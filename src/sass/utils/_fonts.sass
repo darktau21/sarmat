@@ -1,0 +1,13 @@
+// Миксин для более удобного подключения стилей
+@mixin font($font-family, $font-style, $font-weight, $font-src)
+  @font-face
+    font-family: $font-family
+    font-style: $font-style
+    font-weight: $font-weight
+    src: url('../fonts/#{$font-family}/#{$font-src}.woff2') format('woff2'), url('../fonts/#{$font-family}/#{$font-src}.ttf') format('ttf')
+
+// Подключение шрифтов
+@include font('Montserrat', normal, 500, Montserrat-Medium)
+@include font('Montserrat', italic, 500, Montserrat-MediumItalic)
+@include font('Montserrat', normal, 900, Montserrat-Black)
+@include font('Montserrat', italic, 900, Montserrat-BlackItalic)
