@@ -1,13 +1,9 @@
 {
   "name": "sarmat",
   "version": "0.0.2",
-  "description": "Сайт музея им. С. А. Захарова ЮФУ",
-  "homepage": "Ссылка на работающий сайт",
-  "bugs": "ссылка на ишью",
-  "repository": {
-    "type": "git",
-    "url": "ссылка на гитхаб репо"
-  },
+  "description": "Сайт музея почвоведения ЮФУ",
+  "homepage": "https://github.com/darktau21/sarmat",
+  "bugs": "https://github.com/darktau21/sarmat/issues",
   "private": true,
   "scripts": {
     "dev": "gulp",
