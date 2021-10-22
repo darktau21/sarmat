@@ -32,3 +32,18 @@
 Во-вторых - папка ".vscode". В ней находятся мои настройки редактора именно для этого проекта. Использовать их необязательно (эту папку можно просто удалить), но как минимум необходимо установить разиер таба в 2 пробела (да, по умолчанию в [VS Code](https://code.visualstudio.com/ 'Текстовый редактор') символ таба заменяется пробелами, это связано с тем, что на разных системах размер таба разный, а пробелы везде одинаковые).
 
 ### WSL
+
+[WSL](https://docs.microsoft.com/ru-ru/windows/wsl/ 'Подсистема Linux для Windows') (аббревиатура от Windows Substyem for Linux) - это подсистема, позволяющая запускать среду GNU/Linux и использовать большинство программ доступных в ней прямо из винды.
+
+Установка. Если версия винды 2004 или любая Windows 11 (проверить можно нажав Win + R и введя `winver`), достаточно открыть PowerShell от имени админа, ввести `wsl --install` и перезагрузить компьютер. В противном случае ситуация сложнее. Тут порядок действий следующий:
+
+1. Открываем PowerShell от админа.
+2. Вводим `dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart`
+3. Перезагружаемся, снова открываем PowerShell.
+4. Вводим `dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart`
+5. Перезагружаемся.
+6. [Скачиваем](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi), устанавливаем, перезагружаемся.
+7. Снова PowerShell, вводим `wsl --set-default-version 2`
+8. [Тык](https://www.microsoft.com/store/productId/9NBLGGH4MSV6), устанавливаем.
+
+Дальнейшие действия одинаковы вне зависимости от способа установки.
