@@ -1,2 +1,32 @@
+// Импортируем все стили
+// Скорее всего в этот файл вообще не нужно лезть, разве что если нужно поправить глобальные стили
 @import 'utils/*.sass'
 @import '../includes/**/*.sass'
+
+// Глобальные стили
+body
+  margin: 0
+  padding: 0
+  border: none
+  font-family: $main-font
+  font-size: $text-size
+  color: $text-color
+  min-width: 320px
+  position: relative
+  overflow-x: hidden
+
+// Стили для полей ввода в разных их состояниях
+// input, textarea
+//   outline: none
+//   &:focus:required:invalid
+//     border-color: red
+//   &:required:valid
+//     border-color: green
+
+// ::placeholder
+//   color: $placeholder-color
+
+// Стили для выделенных объектов (цвет и фон выделения для текста)
+// ::selection
+//   background-color: $accent-color
+//   color: #fff
