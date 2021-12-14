@@ -1,0 +1,76 @@
+.header
+  padding: 0 10px
+
+.container_header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-bottom: 2px solid rgba($additional-color, 0.5)
+  height: 60px
+
+.logo
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  &__img
+    border-right: 2px solid rgba($additional-color, 0.5)
+    padding-right: 8px
+
+
+  &__text,
+
+  &__text a
+    text-transform: uppercase
+    color: rgba($additional-color, 0.9)
+    font-size: 14px
+    line-height: 24px
+    font-weight: 400
+    width: 140px
+
+
+  &__text
+    padding-left: 10px
+
+.main-menu
+  height: 100%
+  display: flex
+  align-items: center
+
+@media (max-width: 767px)
+  .main-menu
+    display: none
+
+.main-menu__list
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 100%
+
+.main-menu__item
+  height: 100%
+
+
+  & a
+    height: 100%
+    line-height: 60px
+    padding: 22px 15px
+    text-transform: uppercase
+    color: rgba($additional-color, 0.7)
+    font-family: Oswald, sans-serif
+    transition: color 0.1s linear
+
+
+  & a:hover
+    color: $additional-color
+
+
+  &:last-child
+    padding-right: 0
+
+
+  &:hover,
+
+  &_active
+    border-bottom: 3px solid $main-color
+    transition: border 0.15s linear
