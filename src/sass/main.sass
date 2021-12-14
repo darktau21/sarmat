@@ -2,6 +2,8 @@
 // Скорее всего в этот файл вообще не нужно лезть, разве что если нужно поправить глобальные стили
 @import 'utils/*.sass'
 @import '../includes/**/*.sass'
+@import '../pages/**/*.sass'
+
 
 // Глобальные стили
 body
@@ -14,6 +16,41 @@ body
   min-width: 320px
   position: relative
   overflow-x: hidden
+  background-image: url(img/background.png)
+  background-repeat: no-repeat
+  background-size: cover
+
+.container
+  max-width: 1170px
+  margin: 0 auto
+
+*,
+::after,
+::before
+  padding: 0
+  margin: 0
+  border: 0
+
+a
+  text-decoration: none
+  color: $accent-color
+
+li,
+ol,
+ul
+  list-style: none
+
+img
+  vertical-align: top
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-weight: inherit
+  font-size: inherit
 
 // Стили для полей ввода в разных их состояниях
 // input, textarea
