@@ -67,7 +67,7 @@ function styles() {
 // Картинки
 async function images() {
   imagecomp(
-    'src/includes/**/*.{jpg,jpeg,png,svg,gif}', // Берём все изображения из папки источника
+    'src/includes/**/*.{jpeg,png,svg,gif}', // Берём все изображения из папки источника
     'dist/img/', // Выгружаем оптимизированные изображения в папку назначения
     // Настраиваем основные параметры
     { compress_force: false, statistic: true, autoupdate: true },
@@ -89,7 +89,7 @@ async function images() {
 }
 async function uploads() {
   imagecomp(
-    'src/uploads/**/*.{jpg,jpeg,png,svg,gif}', // Берём все изображения из папки источника
+    'src/uploads/**/*.{jpeg,png,svg,gif}', // Берём все изображения из папки источника
     'dist/uploads/', // Выгружаем оптимизированные изображения в папку назначения
     // Настраиваем основные параметры
     { compress_force: false, statistic: true, autoupdate: true },
@@ -112,7 +112,7 @@ async function uploads() {
 
 async function assets() {
   imagecomp(
-    'src/assets/**/*.{jpg,jpeg,png,svg,gif}', // Берём все изображения из папки источника
+    'src/assets/**/*.{jpeg,png,svg,gif}', // Берём все изображения из папки источника
     'dist/assets/', // Выгружаем оптимизированные изображения в папку назначения
     // Настраиваем основные параметры
     { compress_force: false, statistic: true, autoupdate: true },
