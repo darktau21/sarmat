@@ -1,4 +1,4 @@
-mixin header
+mixin header(active)
   header.header
     .container.container_header
         .logo
@@ -11,13 +11,13 @@ mixin header
           .main-menu__mobile-button
             span
           ul.main-menu__list
-              li.main-menu__item.main-menu__item_active
+              li.main-menu__item(class=active == 1 ? 'main-menu__item_active' : '')
                 a(href="index.html") Главная
-              li.main-menu__item
+              li.main-menu__item(class=active == 2 ? 'main-menu__item_active' : '')
                 a(href="expo.html") Экспозиция
-              li.main-menu__item
+              li.main-menu__item(class=active == 3 ? 'main-menu__item_active' : '')
                 a(href="photos.html") Фотоархив
-              li.main-menu__item
+              li.main-menu__item(class=active == 4 ? 'main-menu__item_active' : '')
                 a(href="history.html") История
-              li.main-menu__item
+              li.main-menu__item(class=active == 5 ? 'main-menu__item_active' : '')
                 a(href="contacts.html") Контакты
