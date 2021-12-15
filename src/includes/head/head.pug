@@ -1,4 +1,4 @@
-mixin head(title)
+mixin head(title, page)
   doctype html
   html(lang="ru")
     head
@@ -9,4 +9,4 @@ mixin head(title)
       title Музей почвоведения им. С. А. Захарова | #{title}
       link(rel="stylesheet", href="styles.min.css")
       <link type="image/x-icon" rel="shortcut icon" href="img/header/logo.png">
-    body
+    body(class=page)
