@@ -32,45 +32,89 @@
   &__text
     padding-left: 10px
 
+
 .main-menu
   height: 100%
   display: flex
   align-items: center
 
-@media (max-width: 767px)
-  .main-menu
+  &__mobile-button
     display: none
+    @media (max-width: 767px)
+      display: block
+      width: 30px
+      height: 22px
+      position: relative
+      cursor: pointer
+      z-index: 10
+      margin-right: 10px
 
-.main-menu__list
-  display: flex
-  justify-content: space-between
-  align-items: center
-  height: 100%
+    &::before, &::after, & span
+      @media (max-width: 767px)
+        left: 0
+        position: absolute
+        height: 7%
+        width: 100%
+        background-color: $additional-color
 
-.main-menu__item
-  height: 100%
-  margin-bottom: -1px
+    &::before, &::after
+      @media (max-width: 767px)
+        content: ""
 
-  & a
+    &::before
+      @media (max-width: 767px)
+        top: 0
+
+    &::after
+      @media (max-width: 767px)
+        bottom: 0
+
+    & span
+      @media (max-width: 767px)
+        top: 50%
+        transform: scale(1) translate(0, -50%)
+
+
+  &__list
+    display: flex
+    justify-content: space-between
+    align-items: center
     height: 100%
-    line-height: 60px
-    padding: 22px 15px
-    text-transform: uppercase
-    color: rgba($additional-color, 0.7)
-    font-family: Oswald, sans-serif
-    transition: color 0.1s linear
+    @media (max-width: 767px)
+      display: flex
+      flex-direction: column
+      position: absolute
+      top: 65px
+      left: 0
+      width: 100%
+      background: rgba(#000, 0.6)
+
+  &__item
+    height: 100%
+    margin-bottom: -1px
+
+    & a
+      height: 100%
+      line-height: 60px
+      padding: 22px 15px
+      text-transform: uppercase
+      color: rgba($additional-color, 0.7)
+      font-family: Oswald, sans-serif
+      transition: color 0.1s linear
 
 
-  & a:hover
-    color: $additional-color
+    & a:hover
+      color: $additional-color
 
 
-  &:last-child
-    padding-right: 0
+    &:last-child
+      padding-right: 0
 
 
-  &:hover,
+    &:hover,
 
-  &_active
-    border-bottom: 3px solid $main-color
-    transition: border 0.15s linear
+    &_active
+      border-bottom: 3px solid $main-color
+      transition: border 0.15s linear
+      @media (max-width: 767px)
+        border-bottom: none

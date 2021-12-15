@@ -4,18 +4,20 @@ mixin header
         .logo
             .logo__img
               a(href="https://sfedu.ru" target="_blank" rel="noopener noreferrer")
-                img(src="img/header/logo.png" alt="ЮФУ" width="50" height="43")
+                img(src="img/header/logo.png" alt="ЮФУ")
             .logo__text
               a(href="#") Museum of Soil Science
         .main-menu
-            ul.main-menu__list
-                li.main-menu__item.main-menu__item_active
-                  a(href="index.html") Главная
-                li.main-menu__item
-                  a(href="expo.html") Экспозиция
-                li.main-menu__item
-                  a(href="photos.html") Фотоархив
-                li.main-menu__item
-                  a(href="history.html") История
-                li.main-menu__item
-                  a(href="contacts.html") Контакты
+          .main-menu__mobile-button
+            span
+          ul.main-menu__list
+              li.main-menu__item.main-menu__item_active
+                a(href="index.html") Главная
+              li.main-menu__item
+                a(href="expo.html") Экспозиция
+              li.main-menu__item
+                a(href="photos.html") Фотоархив
+              li.main-menu__item
+                a(href="history.html") История
+              li.main-menu__item
+                a(href="contacts.html") Контакты
