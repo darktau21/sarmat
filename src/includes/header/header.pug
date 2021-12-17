@@ -10,14 +10,15 @@ mixin header(active)
         .main-menu
           .main-menu__mobile-button
             span
-          ul.main-menu__list
-              li.main-menu__item(class=active == 1 ? 'main-menu__item_active' : '')
-                a(href="index.html") Главная
-              li.main-menu__item(class=active == 2 ? 'main-menu__item_active' : '')
-                a(href="expo.html") Экспозиция
-              li.main-menu__item(class=active == 3 ? 'main-menu__item_active' : '')
-                a(href="photos.html") Фотоархив
-              li.main-menu__item(class=active == 4 ? 'main-menu__item_active' : '')
-                a(href="history.html") История
-              li.main-menu__item(class=active == 5 ? 'main-menu__item_active' : '')
-                a(href="contacts.html") Контакты
+          .main-menu__body
+            ul.main-menu__list
+                li.main-menu__item(class=active == 'home' ? 'main-menu__item_active' : '')
+                  a(href="index.html") Главная
+                li.main-menu__item(class=active == 'expo' ? 'main-menu__item_active' : '')
+                  a(href="expo.html") Экспозиция
+                li.main-menu__item(class=active == 'photos' ? 'main-menu__item_active' : '')
+                  a(href="photos.html") Фотоархив
+                li.main-menu__item(class=active == 'history' ? 'main-menu__item_active' : '')
+                  a(href="history.html") История
+                li.main-menu__item(class=active == 'contacts' ? 'main-menu__item_active' : '')
+                  a(href="contacts.html") Контакты

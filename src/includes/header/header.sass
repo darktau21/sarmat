@@ -12,6 +12,7 @@
   display: flex
   justify-content: space-between
   align-items: center
+  z-index: 2
 
   &__img
     border-right: 2px solid rgba($additional-color, 0.5)
@@ -23,7 +24,7 @@
   &__text a
     text-transform: uppercase
     color: rgba($additional-color, 0.9)
-    font-size: 14px
+    +font-size(14px)
     line-height: 24px
     font-weight: 400
     width: 140px
@@ -34,10 +35,8 @@
 
 
 .main-menu
-  height: 100%
   display: flex
   align-items: center
-
   &__mobile-button
     display: none
     @media (max-width: 767px)
@@ -74,6 +73,32 @@
         top: 50%
         transform: scale(1) translate(0, -50%)
 
+    &_active
+      &::before
+        opacity: 0
+
+      & span
+        transform: scale(1) translate(0, -50%) rotate(45deg)
+        top: 50%
+        transition: transform 0.15s ease
+
+      &::after
+        transform: scale(1) translate(0, -50%) rotate(-45deg)
+        top: 50%
+        transition: transform 0.15s ease
+
+  &__body
+    @media (max-width: 767px)
+      position: absolute
+      top: 0px
+      padding-top: 72px
+      left: 0
+      width: 100%
+      background: rgba(#000, 0.9)
+      transform: translateX(-1000%)
+      transition: transform 0.2s linear
+      &_active
+        transform: none
 
   &__list
     display: flex
@@ -81,17 +106,15 @@
     align-items: center
     height: 100%
     @media (max-width: 767px)
-      display: flex
       flex-direction: column
-      position: absolute
-      top: 65px
-      left: 0
-      width: 100%
-      background: rgba(#000, 0.6)
+      border-top: 2px solid rgba($additional-color, 0.5)
 
   &__item
-    height: 100%
     margin-bottom: -1px
+    @media (max-width: 767px)
+      margin:
+        top: 10px
+        bottom: 10px
 
     & a
       height: 100%
@@ -101,14 +124,24 @@
       color: rgba($additional-color, 0.7)
       font-family: Oswald, sans-serif
       transition: color 0.1s linear
-
+      @media (max-width: 767px)
+        line-height: 20px
+        padding: 0px 10px
+        color: $additional-color
 
     & a:hover
       color: $additional-color
 
+    &:first-child
+     @media (max-width: 767px)
+        padding-top: 11px
 
     &:last-child
       padding-right: 0
+      @media (max-width: 767px)
+        padding-bottom: 11px
+
+
 
 
     &:hover,
@@ -116,5 +149,4 @@
     &_active
       border-bottom: 3px solid $main-color
       transition: border 0.15s linear
-      @media (max-width: 767px)
-        border-bottom: none
+
