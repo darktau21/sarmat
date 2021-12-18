@@ -1,0 +1,16 @@
+.promo
+  &__content
+    color: $additional-color
+    font-weight: 900
+    text-transform: uppercase
+    padding-top: 10vh
+    +adaptiv-font(78, 32)
+    &::after
+      content: ""
+      display: block
+      width: 25%
+      height: 12px
+      background-color: $main-color
+      margin-top: 3vh
+      @media (max-width: 480px)
+        width: 45%
