@@ -1,3 +1,5 @@
+- var menuItems = {home: 'Главная', expo: 'Экспозиция', photos: 'Фотоархив', history: 'История', contacts: 'Контакты'}
+
 mixin header(active)
   header.header
     .container.container_header
@@ -12,13 +14,6 @@ mixin header(active)
             span
           .main-menu__body
             ul.main-menu__list
-                li.main-menu__item(class=active == 'home' ? 'main-menu__item_active' : '')
-                  a(href="index.html") Главная
-                li.main-menu__item(class=active == 'expo' ? 'main-menu__item_active' : '')
-                  a(href="expo.html") Экспозиция
-                li.main-menu__item(class=active == 'photos' ? 'main-menu__item_active' : '')
-                  a(href="photos.html") Фотоархив
-                li.main-menu__item(class=active == 'history' ? 'main-menu__item_active' : '')
-                  a(href="history.html") История
-                li.main-menu__item(class=active == 'contacts' ? 'main-menu__item_active' : '')
-                  a(href="contacts.html") Контакты
+              each name, key in menuItems
+                li.main-menu__item(class=active == key ? 'main-menu__item_active' : '')
+                  a(href=key + ".html") #{name}
