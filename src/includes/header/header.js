@@ -1,4 +1,3 @@
-console.log('Приветствую смотрящих!');
 let menuBtn = document.querySelector('.main-menu__mobile-button');
 let menuBody = document.querySelector('.main-menu__body');
 
