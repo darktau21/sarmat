@@ -1,4 +1,4 @@
-mixin head(title, page)
+mixin head(name, key)
   doctype html
   html(lang="ru")
     head
@@ -6,8 +6,8 @@ mixin head(title, page)
       meta(http-equiv="X-UA-Compatible" content="IE=edge")
       meta(name="viewport" content="width=device-width, initial-scale=1.0")
       meta(name="theme-color" content="#28966E")
-      title Музей почвоведения им. С. А. Захарова | #{title}
+      title= title + ' | ' + name
       link(rel="stylesheet" href="styles.min.css")
       link(type="image/x-icon" rel="shortcut icon" href="img/header/logo.png")
       script(async src="bundle.min.js")
-    body(class=page)
+    body(class=key)

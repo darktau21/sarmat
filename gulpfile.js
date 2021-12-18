@@ -14,6 +14,8 @@ const cleancss = require('gulp-clean-css'); // Сжатие CSS
 const imagecomp = require('compress-images'); // Сжатие и оптимизация изображений
 const ttf2woff2 = require('gulp-ttf2woff2'); // Конвертирует шрифты
 const del = require('del'); // Удаление файлов и  папок
+const data = require('gulp-data');
+const fs = require('fs');
 
 // ----------------[ Функции ]----------------
 // Функция, определяющая логику работы Browsersync
@@ -29,7 +31,12 @@ function browsersync() {
 // Препроцессор HTML
 function pug() {
   return src('src/pages/**/*.pug')
-    .pipe(pugcomp({ plugins: [pugInclude()] }))
+    .pipe(
+      data(function (file) {
+        return JSON.parse(fs.readFileSync('src/data/config.json'));
+      })
+    )
+    .pipe(pugcomp({ plugins: [pugInclude()], pretty: true }))
     .pipe(dest('dist/'));
 }
 
@@ -89,8 +96,7 @@ async function images() {
 }
 
 async function copywebp() {
-  return src('src/includes/**/*.webp')
-    .pipe(dest('dist/img/'));
+  return src('src/includes/**/*.webp').pipe(dest('dist/img/'));
 }
 
 // async function uploads() {
@@ -162,6 +168,14 @@ exports.default = parallel(
   startwatch
 );
 
-exports.build = series(cleandist, images, copywebp, fonts, pug, styles, scripts);
+exports.build = series(
+  cleandist,
+  images,
+  copywebp,
+  fonts,
+  pug,
+  styles,
+  scripts
+);
 
 exports.img = parallel(images, copywebp);

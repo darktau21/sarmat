@@ -1,0 +1,31 @@
+{
+  "title": "Музей Царство почв - мир под ногами",
+  "logoTitle": "Museum of Soil Science",
+  "pages": [
+    {
+      "name": "Главная",
+      "key": "home",
+      "link": "index.html"
+    },
+    {
+      "name": "Экспозиция",
+      "key": "expo",
+      "link": "exposition.html"
+    },
+    {
+      "name": "Фотоархив",
+      "key": "photos",
+      "link": "photos.html"
+    },
+    {
+      "name": "История",
+      "key": "history",
+      "link": "history.html"
+    },
+    {
+      "name": "Контакты",
+      "key": "contacts",
+      "link": "contacts.html"
+    }
+  ]
+}

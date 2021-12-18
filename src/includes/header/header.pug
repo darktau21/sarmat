@@ -1,5 +1,3 @@
-- var menuItems = {home: 'Главная', expo: 'Экспозиция', photos: 'Фотоархив', history: 'История', contacts: 'Контакты'}
-
 mixin header(active)
   header.header
     .container.container_header
@@ -8,12 +6,12 @@ mixin header(active)
               a(href="https://sfedu.ru" target="_blank" rel="noopener noreferrer" title="Сайт ЮФУ")
                 img(src="img/header/logo.png" alt="ЮФУ")
             .logo__text
-              a(href="#" title="Главная") Museum of Soil Science
+              a(href="#" title="Главная")= logoTitle
         .main-menu
           .main-menu__mobile-button
             span
           .main-menu__body
             ul.main-menu__list
-              each name, key in menuItems
-                li.main-menu__item(class=active == key ? 'main-menu__item_active' : '')
-                  a(href=key + ".html") #{name}
+              each page in pages
+                li.main-menu__item(class=active == page.key ? 'main-menu__item_active' : '')
+                  a(href=page.link)= page.name

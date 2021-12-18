@@ -1,5 +1,5 @@
 include ../includes/**/*.pug
-- let page = 'home'
+- let currentPage = pages[0]
 
-+head('Главная', page)
-+header(page)
++head(currentPage.name, currentPage.key)
++header(currentPage.key)
