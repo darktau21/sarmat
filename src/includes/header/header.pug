@@ -1,17 +1,18 @@
 mixin header(active)
-  header.header
-    .container.container_header
-        .logo
-            .logo__img
-              a(href="https://sfedu.ru" target="_blank" rel="noopener noreferrer" title="Сайт ЮФУ")
-                img(src="img/header/logo.png" alt="ЮФУ")
-            .logo__text
-              a(href="#" title="Главная")= logoTitle
-        .main-menu
-          .main-menu__mobile-button
-            span
-          .main-menu__body
-            ul.main-menu__list
-              each page in pages
-                li.main-menu__item(class=active == page.key ? 'main-menu__item_active' : '')
-                  a(href=page.link)= page.name
+  .container
+    header.header
+      .container_header
+          .logo
+              .logo__img
+                a(href="https://sfedu.ru" target="_blank" rel="noopener noreferrer" title="Сайт ЮФУ")
+                  img(src="img/header/logo.png" alt="ЮФУ")
+              .logo__text
+                a(href="#" title="Главная")= logoTitle
+          .main-menu
+            .main-menu__mobile-button
+              span
+            .main-menu__body
+              ul.main-menu__list
+                each page in pages
+                  li.main-menu__item(class=active == page.key ? 'main-menu__item_active' : '')
+                    a(href=page.link)= page.name
