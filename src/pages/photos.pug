@@ -1,0 +1,5 @@
+include ../includes/**/*.pug
+- let currentPage = pages[2]
+
++head(currentPage.name, currentPage.key)
++header(currentPage.key)
