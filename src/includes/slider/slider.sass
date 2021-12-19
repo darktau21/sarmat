@@ -11,33 +11,52 @@
     height: 100%
     display: block
     content: ''
+    @media (max-width: 768px)
+      display: none
 
   &__wrapper
     background: $additional-color
     border-top-right-radius: 70px
     padding-bottom: 100px
+    @media (max-width: 768px)
+      width: 100%
+      border-top-right-radius: 0
+
 
   &__body
     display: flex
     z-index: 2
     position: relative
+    margin-right: 70px
+    @media (max-width: 768px)
+      flex-direction: column
+      align-items: center
+      margin-right: 0
+
 
   &__picture
     max-width: 300px
     padding: 8px
     background: $main-color
     margin-top: -75px
+    flex-grow: 1
+    @media (max-width: 768px)
+      margin-top: 10px
   & img
     max-width: 100%
     min-width: 265px
     height: auto
+    object-fit: cover
+
 
   &__article
     max-width: 350px
     background: $main-color
     margin-top: -90px
     padding: 35px
-    margin-right: 70px
+    flex-grow: 1
+    @media (max-width: 768px)
+      margin-top: 10px
 
   &__header
     display: flex
@@ -45,6 +64,8 @@
 
   &__title
     max-width: 250px
+    @media (min-width: 769px) and (max-width: 870px)
+      max-width: none
     font-family: 'Oswald', sans-serif
     font-weight: 500
     color: $additional-color
@@ -63,6 +84,8 @@
     margin-top: 15px
     position: relative
     cursor: pointer
+    @media (max-width: 870px)
+      display: none
 
     & span
       &::before
@@ -95,7 +118,26 @@
     padding-top: 20px
     border-top: 5px solid $additional-color
 
+  &__mobile-link
+    display: none
+    @media (max-width: 870px)
+      display: block
+      background: $main-color
+      color: $additional-color
+      padding:
+        top: 20px
+        left: 20px
+        right: 20px
+      text-align: center
+      & a
+        color: $additional-color
+        text-decoration: underline
+
+
 
 .slider .container_slider
-  @media (min-width: 768px) and (max-width: 1170px)
+  @media (min-width: 769px) and (max-width: 1170px)
     padding-right: 15%
+  @media (max-width: 768px)
+      padding: 0
+      width: 100%
