@@ -2,6 +2,8 @@ include ../includes/**/*.pug
 - let currentPage = pages[0]
 
 +head(currentPage.name, currentPage.key)
-  +header(currentPage.key)
-  main
-    +promo
+  .wrapper
+    +header(currentPage.key)
+    main
+      +promo
+      +slider
