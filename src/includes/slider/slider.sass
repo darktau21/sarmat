@@ -66,7 +66,7 @@
     max-width: 250px
     @media (min-width: 769px) and (max-width: 870px)
       max-width: none
-    font-family: 'Oswald', sans-serif
+    font-family: $additional-font
     font-weight: 500
     color: $additional-color
     +font-size(36px)
@@ -111,7 +111,7 @@
         transform: rotate(-45deg)
 
   &__text
-    font-family: 'Oswald', sans-serif
+    font-family: $additional-font
     font-weight: 300
     +font-size(20px)
     color: $additional-color
@@ -130,8 +130,7 @@
         right: 20px
       text-align: center
       & a
-        color: $additional-color
-        text-decoration: underline
+        +font-size(20px)
 
 
 
