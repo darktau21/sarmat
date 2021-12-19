@@ -1,0 +1,41 @@
+.footer
+  background: $main-color
+  padding: 30px 0
+
+  &__info
+    display: flex
+    flex-direction: column
+
+  &__logo
+    display: flex
+    justify-content: space-between
+    align-items: center
+    z-index: 2
+    max-width: 200px
+
+  &__img
+    border-right: 2px solid rgba($additional-color, 0.5)
+    padding-right: 8px
+
+  &__text,
+
+  &__text a
+    text-transform: uppercase
+    color: rgba($additional-color, 0.9)
+    +font-size(14px)
+    line-height: 24px
+    font-weight: 400
+    width: 140px
+
+  &__text
+    padding-left: 10px
+
+  &__adress
+    margin-top: 80px
+    color: $additional-color
+    font-weight: 500
+
+  &__copyright
+    font-weight: 300
+    color: $additional-color
+    margin-top: 40px
