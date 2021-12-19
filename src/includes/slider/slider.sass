@@ -1,0 +1,101 @@
+.slider
+  margin-top: 200px
+  position: relative
+  &__bckg
+    position: absolute
+    z-index: 1
+    left: 0
+    top: 0
+    background: $additional-color
+    width: 50%
+    height: 100%
+    display: block
+    content: ''
+
+  &__wrapper
+    background: $additional-color
+    border-top-right-radius: 70px
+    padding-bottom: 100px
+
+  &__body
+    display: flex
+    z-index: 2
+    position: relative
+
+  &__picture
+    max-width: 300px
+    padding: 8px
+    background: $main-color
+    margin-top: -75px
+  & img
+    max-width: 100%
+    min-width: 265px
+    height: auto
+
+  &__article
+    max-width: 350px
+    background: $main-color
+    margin-top: -90px
+    padding: 35px
+    margin-right: 70px
+
+  &__header
+    display: flex
+    justify-content: space-between
+
+  &__title
+    max-width: 250px
+    font-family: 'Oswald', sans-serif
+    font-weight: 500
+    color: $additional-color
+    +font-size(36px)
+    line-height: 135%
+    text-transform: uppercase
+    padding-bottom: 20px
+
+  &__link
+    content: ''
+    display: block
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    background: $additional-color
+    margin-top: 15px
+    position: relative
+    cursor: pointer
+
+    & span
+      &::before
+        width: 50%
+        height: 10%
+        background: $main-color
+        display: block
+        content: ''
+        left: 30%
+        top: 30%
+        position: absolute
+        transform: rotate(45deg)
+
+      &::after
+        width: 50%
+        height: 10%
+        background: $main-color
+        display: block
+        content: ''
+        left: 30%
+        bottom: 31%
+        position: absolute
+        transform: rotate(-45deg)
+
+  &__text
+    font-family: 'Oswald', sans-serif
+    font-weight: 300
+    +font-size(20px)
+    color: $additional-color
+    padding-top: 20px
+    border-top: 5px solid $additional-color
+
+
+.slider .container_slider
+  @media (min-width: 768px) and (max-width: 1170px)
+    padding-right: 15%
