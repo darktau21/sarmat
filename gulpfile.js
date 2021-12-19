@@ -139,8 +139,8 @@ function startwatch() {
   watch('src/**/*.js', scripts);
   watch('src/**/*.sass', styles);
   watch('src/fonts/**/*', fonts);
-  watch('src/**/*.{jpg, jpeg,png,svg,gif}', images);
-  watch('src/**/*.{pug, json}', pug).on('change', series(pug, browserSync.reload));
+  watch('src/**/*.{jpg,jpeg,png,svg,gif}', images);
+  watch('src/**/*.{pug,json}', pug).on('change', series(pug, browserSync.reload));
 }
 
 // ----------------[ Экспорты в Gulp ]----------------
