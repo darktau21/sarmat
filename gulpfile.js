@@ -74,7 +74,7 @@ function styles() {
 // Картинки
 async function images() {
   imagecomp(
-    'src/includes/**/*.{jpeg,png,svg,gif}', // Берём все изображения из папки источника
+    'src/includes/**/*.{jpg, jpeg,png,svg,gif}', // Берём все изображения из папки источника
     'dist/img/', // Выгружаем оптимизированные изображения в папку назначения
     // Настраиваем основные параметры
     { compress_force: false, statistic: true, autoupdate: true },
@@ -139,7 +139,8 @@ function startwatch() {
   watch('src/**/*.js', scripts);
   watch('src/**/*.sass', styles);
   watch('src/fonts/**/*', fonts);
-  watch('src/**/*.pug', pug).on('change', series(pug, browserSync.reload));
+  watch('src/**/*.{jpg, jpeg,png,svg,gif}', images);
+  watch('src/**/*.{pug, json}', pug).on('change', series(pug, browserSync.reload));
 }
 
 // ----------------[ Экспорты в Gulp ]----------------
