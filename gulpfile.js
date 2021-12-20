@@ -99,28 +99,28 @@ async function copywebp() {
   return src('src/includes/**/*.webp').pipe(dest('dist/img/'));
 }
 
-// async function uploads() {
-//   imagecomp(
-//     'src/uploads/**/*.{jpeg,png,svg,gif}', // Берём все изображения из папки источника
-//     'dist/uploads/', // Выгружаем оптимизированные изображения в папку назначения
-//     // Настраиваем основные параметры
-//     { compress_force: false, statistic: true, autoupdate: true },
-//     false,
-//     // Сжимаем и оптимизируем изображеня
-//     { jpg: { engine: 'mozjpeg', command: ['-quality', '80'] } },
-//     { png: { engine: 'pngquant', command: ['--quality=80-100', '-o'] } },
-//     { svg: { engine: 'svgo', command: '--multipass' } },
-//     {
-//       gif: { engine: 'gifsicle', command: ['--colors', '64', '--use-col=web'] },
-//     },
-//     function (err, completed) {
-//       // Обновляем страницу по завершении
-//       if (completed === true) {
-//         browserSync.reload();
-//       }
-//     }
-//   );
-// }
+async function dataimg() {
+  imagecomp(
+    'src/data/**/*.{jpg, jpeg,png,svg,gif}', // Берём все изображения из папки источника
+    'dist/data/', // Выгружаем оптимизированные изображения в папку назначения
+    // Настраиваем основные параметры
+    { compress_force: false, statistic: true, autoupdate: true },
+    false,
+    // Сжимаем и оптимизируем изображеня
+    { jpg: { engine: 'mozjpeg', command: ['-quality', '75'] } },
+    { png: { engine: 'pngquant', command: ['--quality=75-100', '-o'] } },
+    { svg: { engine: 'svgo', command: '--multipass' } },
+    {
+      gif: { engine: 'gifsicle', command: ['--colors', '64', '--use-col=web'] },
+    },
+    function (err, completed) {
+      // Обновляем страницу по завершении
+      if (completed === true) {
+        browserSync.reload();
+      }
+    }
+  );
+}
 
 // Шрифты
 function fonts() {
@@ -140,7 +140,11 @@ function startwatch() {
   watch('src/**/*.sass', styles);
   watch('src/fonts/**/*', fonts);
   watch('src/**/*.{jpg,jpeg,png,svg,gif}', images);
-  watch('src/**/*.{pug,json}', pug).on('change', series(pug, browserSync.reload));
+  watch('src/**/*.{jpg,jpeg,png,svg,gif}', dataimg);
+  watch('src/**/*.{pug,json}', pug).on(
+    'change',
+    series(pug, browserSync.reload)
+  );
 }
 
 // ----------------[ Экспорты в Gulp ]----------------
@@ -153,14 +157,15 @@ exports.scripts = scripts;
 exports.pug = pug;
 exports.styles = styles;
 exports.images = images;
+exports.dataimg = dataimg;
 exports.copywebp = copywebp;
-// exports.uploads = uploads;
 exports.fonts = fonts;
 exports.cleandist = cleandist;
 // Дефолтный таск (запускает перечисленные функции командой gulp без всяких аргументов)
 exports.default = parallel(
   fonts,
   images,
+  dataimg,
   copywebp,
   pug,
   styles,
@@ -172,6 +177,7 @@ exports.default = parallel(
 exports.build = series(
   cleandist,
   images,
+  dataimg,
   copywebp,
   fonts,
   pug,
@@ -179,4 +185,4 @@ exports.build = series(
   scripts
 );
 
-exports.img = parallel(images, copywebp);
+exports.img = parallel(images, copywebp, dataimg);

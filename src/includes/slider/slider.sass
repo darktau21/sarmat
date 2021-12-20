@@ -42,15 +42,14 @@
     flex-grow: 1
     @media (max-width: 768px)
       margin-top: 10px
-  & img
-    max-width: 100%
-    min-width: 265px
-    height: auto
-    object-fit: cover
+    & img
+      object-fit: contain
+      width: 100%
+      height: 100%
 
 
   &__article
-    max-width: 350px
+    max-width: 400px
     background: $main-color
     margin-top: -90px
     padding: 35px
@@ -63,7 +62,7 @@
     justify-content: space-between
 
   &__title
-    max-width: 250px
+    max-width: 320px
     @media (min-width: 769px) and (max-width: 870px)
       max-width: none
     font-family: $additional-font
@@ -81,7 +80,6 @@
     height: 50px
     border-radius: 50%
     background: $additional-color
-    margin-top: 15px
     position: relative
     cursor: pointer
     @media (max-width: 870px)
