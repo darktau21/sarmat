@@ -40,16 +40,38 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let currentSlide = slides[getRandom(0, 4)];
+let currentSlideNum = getRandom(0, slides.length - 1)
+let currentSlide = slides[currentSlideNum];
 
-document
-  .querySelector('#slider__picture')
-  .setAttribute('src', currentSlide.picture);
-document
-  .querySelector('#slider__picture')
-  .setAttribute('alt', currentSlide.alt);
+function changeSlide() {
+  document
+    .querySelector('#slider__picture')
+    .setAttribute('src', currentSlide.picture);
+  document
+    .querySelector('#slider__picture')
+    .setAttribute('alt', currentSlide.alt);
+  document.querySelector('.slider__title').textContent = currentSlide.title;
+  document.querySelector('.slider__text').textContent = currentSlide.text;
+  document
+    .querySelector('#slider__to-article-mobile')
+    .setAttribute('href', currentSlide.link);
+}
 
-document.querySelector('.slider__title').textContent = currentSlide.title;
-document.querySelector('.slider__text').textContent = currentSlide.text;
-document.querySelector('#slider__to-article').setAttribute('href', currentSlide.link);
-document.querySelector('#slider__to-article-mobile').setAttribute('href', currentSlide.link);
+changeSlide();
+
+function checkSlide() {
+  currentSlideNum += 1;
+  currentSlideNum = currentSlideNum == slides.length ? 0 : currentSlideNum;
+  currentSlide = slides[currentSlideNum]
+}
+
+let nextSlideBtn = document.querySelector('.slider__next-slide')
+document.addEventListener('click', function (e) {
+  let target = e.target;
+  let its_nextSlideBtn = target == nextSlideBtn || nextSlideBtn.contains(target);
+
+  if (its_nextSlideBtn) {
+    checkSlide()
+    changeSlide()
+  }
+});
