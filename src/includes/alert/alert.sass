@@ -1,0 +1,19 @@
+.alert
+  padding: 15px
+  color: $additional-color
+  background-color: rgba($accent-color, 0.8)
+  z-index: 999
+  position: fixed
+  text-align: center
+  cursor: pointer
+
+.alert p
+  +font-size(24px)
+  font-weight: 600
+  animation: blink 400ms alternate infinite
+  @keyframes blink
+    0%
+      opacity: 1
+
+    100%
+      opacity: 0.1
