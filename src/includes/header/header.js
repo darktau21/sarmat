@@ -11,10 +11,10 @@ menuBtn.addEventListener('click', function (e) {
 });
 
 document.addEventListener('click', function (e) {
-  const target = e.target;
-  const its_menuBody = target == menuBody || menuBody.contains(target);
-  const its_menuBtn = target == menuBtn;
-  const menu_is_active = menuBody.classList.contains('main-menu__body_active');
+  let target = e.target;
+  let its_menuBody = target == menuBody || menuBody.contains(target);
+  let its_menuBtn = target == menuBtn || menuBtn.contains(target);
+  let menu_is_active = menuBody.classList.contains('main-menu__body_active');
 
   if (!its_menuBody && !its_menuBtn && menu_is_active) {
     toggleMenu();
