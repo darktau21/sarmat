@@ -42,11 +42,11 @@
     padding: 8px
     background: $main-color
     margin-top: -75px
-    flex-grow: 1
+    display: flex
+    align-items: center
     @media (max-width: 960px)
-      min-height: 200px
-      min-width: 200px
       margin-top: 10px
+      width: 300px
     & img
       object-fit: contain
       width: 100%
@@ -54,7 +54,6 @@
       position: relative
       z-index: 2
   &__picture-wrapper
-    object-fit: contain
     width: 100%
     height: 100%
     position: relative
@@ -68,7 +67,6 @@
       text-align: center
       vertical-align: middle
       z-index: 1
-      display: table-cell
 
 
   &__article
@@ -82,7 +80,7 @@
     flex-direction: column
     @media (max-width: 960px)
       margin-top: 10px
-      min-height: auto
+      padding: 20px
 
 
   &__header
@@ -100,10 +98,19 @@
     line-height: 135%
     text-transform: uppercase
     padding-bottom: 20px
+    @media (max-width: 960px)
+      max-width: none
+      text-align: center
 
   &__btns
     @media (max-width: 960px)
       display: none
+
+    &_mobile
+      width: 440px
+      display: flex
+      @media (min-width: 961px)
+        display: none
 
   &__slide-btn
     content: ''
@@ -145,6 +152,72 @@
     &_prev
       transform: rotate(180deg)
       margin-right: 10px
+
+    &-mobile
+      border-radius: 0
+      width: 50%
+      border: 4px solid darken($additional-color, 10)
+      background: $main-color
+      height: 70px
+      content: ''
+      position: relative
+      cursor: pointer
+      &_prev
+        border:
+          right: none
+          left: none
+          bottom: none
+        & span
+        &::before
+          width: 18%
+          height: 10%
+          background: $additional-color
+          display: block
+          content: ''
+          left: 40%
+          top: 29.8%
+          position: absolute
+          transform: rotate(-45deg)
+
+        &::after
+          width: 18%
+          height: 10%
+          background: $additional-color
+          display: block
+          content: ''
+          left: 40%
+          bottom: 28%
+          position: absolute
+          transform: rotate(45deg)
+
+      &_next
+        border:
+          right: none
+          bottom: none
+        & span
+        &::before
+          width: 18%
+          height: 10%
+          background: $additional-color
+          display: block
+          content: ''
+          left: 40%
+          top: 29.8%
+          position: absolute
+          transform: rotate(225deg)
+
+        &::after
+          width: 18%
+          height: 10%
+          background: $additional-color
+          display: block
+          content: ''
+          left: 40%
+          bottom: 28%
+          position: absolute
+          transform: rotate(135deg)
+
+
   &__text
     font-family: $additional-font
     font-weight: 300
@@ -162,7 +235,7 @@
     padding: 12px 0
     transition: background 0.2s linear
     @media (max-width: 960px)
-      margin-top: 35px
+      margin-top: auto
       align-self: center
     &:hover
       background: rgba(lighten($main-color, 10), 1)

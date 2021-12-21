@@ -57,4 +57,28 @@ document.addEventListener('click', function (e) {
   }
 });
 
+let nextSlideBtnMobile = document.querySelector(
+  '.slider__slide-btn-mobile_next'
+);
+document.addEventListener('click', function (e) {
+  let target = e.target;
+  let its_nextSlideBtnMobile =
+    target == nextSlideBtnMobile || nextSlideBtnMobile.contains(target);
 
+  if (its_nextSlideBtnMobile) {
+    checkNextSlide();
+  }
+});
+
+let prevSlideBtnMobile = document.querySelector(
+  '.slider__slide-btn-mobile_prev'
+);
+document.addEventListener('click', function (e) {
+  let target = e.target;
+  let its_prevSlideBtnMobile =
+    target == prevSlideBtnMobile || prevSlideBtnMobile.contains(target);
+
+  if (its_prevSlideBtnMobile) {
+    checkPrevSlide();
+  }
+});
