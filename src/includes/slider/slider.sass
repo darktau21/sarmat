@@ -11,16 +11,17 @@
     height: 100%
     display: block
     content: ''
-    @media (max-width: 768px)
+    @media (max-width: 960px)
       display: none
 
   &__wrapper
     background: $additional-color
     border-top-right-radius: 70px
     padding-bottom: 100px
-    @media (max-width: 768px)
+    @media (max-width: 960px)
       width: 100%
       border-top-right-radius: 0
+      padding-bottom: 35px
 
 
   &__body
@@ -28,7 +29,7 @@
     z-index: 2
     position: relative
     margin-right: 70px
-    @media (max-width: 768px)
+    @media (max-width: 960px)
       flex-direction: column
       align-items: center
       margin-right: 0
@@ -36,11 +37,15 @@
 
   &__picture
     max-width: 300px
+    min-height: 450px
+    transition: height 0.2s linear
     padding: 8px
     background: $main-color
     margin-top: -75px
     flex-grow: 1
-    @media (max-width: 768px)
+    @media (max-width: 960px)
+      min-height: 200px
+      min-width: 200px
       margin-top: 10px
     & img
       object-fit: contain
@@ -68,21 +73,26 @@
 
   &__article
     max-width: 400px
+    min-height: 410px
     background: $main-color
     margin-top: -90px
     padding: 35px
-    flex-grow: 1
-    @media (max-width: 768px)
+    position: relative
+    display: flex
+    flex-direction: column
+    @media (max-width: 960px)
       margin-top: 10px
+      min-height: auto
+
 
   &__header
     display: flex
     justify-content: space-between
+    @media (max-width: 960px)
+      justify-content: center
 
   &__title
-    max-width: 320px
-    @media (min-width: 769px) and (max-width: 870px)
-      max-width: none
+    max-width: 300px
     font-family: $additional-font
     font-weight: 500
     color: $additional-color
@@ -91,17 +101,24 @@
     text-transform: uppercase
     padding-bottom: 20px
 
-  &__next-slide
+  &__btns
+    @media (max-width: 960px)
+      display: none
+
+  &__slide-btn
     content: ''
-    display: block
-    width: 50px
-    height: 50px
+    float: left
+    width: 40px
+    height: 40px
     border-radius: 50%
     background: $additional-color
+    transition: background 0.2s linear
     position: relative
     cursor: pointer
-    @media (max-width: 870px)
-      display: none
+    &:hover
+      background: darken($additional-color, 15)
+    &:active
+      background: darken($additional-color, 30)
 
     & span
       &::before
@@ -125,7 +142,9 @@
         bottom: 31%
         position: absolute
         transform: rotate(-45deg)
-
+    &_prev
+      transform: rotate(180deg)
+      margin-right: 10px
   &__text
     font-family: $additional-font
     font-weight: 300
@@ -134,27 +153,32 @@
     padding-top: 20px
     border-top: 5px solid $additional-color
 
-  &__mobile-link
-    display: none
-    @media (max-width: 870px)
-      display: block
-      background: $main-color
+  &__link
+    align-self: flex-start
+    margin-top: auto
+    background: rgba(lighten($main-color, 30), 0.4)
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    border-radius: 5px
+    padding: 12px 0
+    transition: background 0.2s linear
+    @media (max-width: 960px)
+      margin-top: 35px
+      align-self: center
+    &:hover
+      background: rgba(lighten($main-color, 10), 1)
+    &:active
+      background: rgba(darken($main-color, 30), 0.4)
+    & a
+      +font-size(20px)
+      padding: 12px 60px
+      font-family: $additional-font
+      font-weight: normal
       color: $additional-color
-      padding:
-        top: 20px
-        left: 20px
-        right: 20px
-      text-align: center
-      & a
-        +font-size(24px)
-        font-weight: 500
-
-
-
+      transition: color 0.2s linear
+      &:active
+        color: rgba($additional-color, 0.8)
 
 .slider .container_slider
-  @media (min-width: 769px) and (max-width: 1170px)
-    padding-right: 15%
-  @media (max-width: 768px)
+  @media (max-width: 960px)
       padding: 0
       width: 100%
