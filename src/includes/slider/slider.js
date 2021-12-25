@@ -1,6 +1,11 @@
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+function preloadImages() {
+  for (var i = 0; i < arguments.length; i++) {
+    new Image().src = arguments[i];
+  }
+}
 let slidesMassLenght = slides.length - 1;
 let currentSlideNum = getRandom(0, slidesMassLenght);
 let currentSlide = slides[currentSlideNum];
@@ -17,6 +22,11 @@ function changeSlide() {
   document
     .querySelector('#slider__to-article')
     .setAttribute('href', currentSlide.link);
+  preloadImages(
+    slides[currentSlideNum + 1].picture,
+    slides[currentSlideNum - 1].picture
+  );
+  console.log(slides[currentSlideNum + 1].picture, slides[currentSlideNum - 1].picture)
 }
 
 changeSlide();
