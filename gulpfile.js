@@ -11,7 +11,7 @@ const sass = require('gulp-sass')(require('sass')); // Препроцессор 
 const sassglob = require('gulp-sass-glob'); // Препроцессор CSS
 const autoprefixer = require('gulp-autoprefixer'); // Автодобавление вендорных префиксов свойствам
 const cleancss = require('gulp-clean-css'); // Сжатие CSS
-const imagecomp = require('compress-images'); // Сжатие и оптимизация изображений
+const imagecomp = require('gulp-imagemin'); // Сжатие картиночек
 const ttf2woff2 = require('gulp-ttf2woff2'); // Конвертирует шрифты
 const del = require('del'); // Удаление файлов и  папок
 const data = require('gulp-data');
@@ -73,26 +73,18 @@ function styles() {
 
 // Картинки
 async function images() {
-  imagecomp(
-    'src/includes/**/*.{jpg, jpeg,png,svg,gif}', // Берём все изображения из папки источника
-    'dist/img/', // Выгружаем оптимизированные изображения в папку назначения
-    // Настраиваем основные параметры
-    { compress_force: false, statistic: true, autoupdate: true },
-    false,
-    // Сжимаем и оптимизируем изображеня
-    { jpg: { engine: 'mozjpeg', command: ['-quality', '75'] } },
-    { png: { engine: 'pngquant', command: ['--quality=75-100', '-o'] } },
-    { svg: { engine: 'svgo', command: '--multipass' } },
-    {
-      gif: { engine: 'gifsicle', command: ['--colors', '64', '--use-col=web'] },
-    },
-    function (err, completed) {
-      // Обновляем страницу по завершении
-      if (completed === true) {
-        browserSync.reload();
-      }
-    }
-  );
+  return src('src/includes/**/*.{jpg, jpeg,png,svg,gif}') // Берём все изображения из папки источника
+    .pipe(
+      imagecomp([
+        imagecomp.gifsicle({ interlaced: true }),
+        imagecomp.mozjpeg({ quality: 75, progressive: true }),
+        imagecomp.optipng({ optimizationLevel: 5 }),
+        imagecomp.svgo({
+          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+        }),
+      ])
+    )
+    .pipe(dest('dist/img/')); // Выгружаем оптимизированные изображения в папку назначения
 }
 
 async function copywebp() {
@@ -100,26 +92,18 @@ async function copywebp() {
 }
 
 async function dataimg() {
-  imagecomp(
-    'src/data/**/*.{jpg, jpeg,png,svg,gif}', // Берём все изображения из папки источника
-    'dist/data/', // Выгружаем оптимизированные изображения в папку назначения
-    // Настраиваем основные параметры
-    { compress_force: false, statistic: true, autoupdate: true },
-    false,
-    // Сжимаем и оптимизируем изображеня
-    { jpg: { engine: 'mozjpeg', command: ['-quality', '75'] } },
-    { png: { engine: 'pngquant', command: ['--quality=75-100', '-o'] } },
-    { svg: { engine: 'svgo', command: '--multipass' } },
-    {
-      gif: { engine: 'gifsicle', command: ['--colors', '64', '--use-col=web'] },
-    },
-    function (err, completed) {
-      // Обновляем страницу по завершении
-      if (completed === true) {
-        browserSync.reload();
-      }
-    }
-  );
+  return src('src/data/**/*.{jpg, jpeg,png,svg,gif}') // Берём все изображения из папки источника
+    .pipe(
+      imagecomp([
+        imagecomp.gifsicle({ interlaced: true }),
+        imagecomp.mozjpeg({ quality: 75, progressive: true }),
+        imagecomp.optipng({ optimizationLevel: 5 }),
+        imagecomp.svgo({
+          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+        }),
+      ])
+    )
+    .pipe(dest('dist/data/')); // Выгружаем оптимизированные изображения в папку назначения
 }
 
 // Шрифты
@@ -139,8 +123,8 @@ function startwatch() {
   watch('src/**/*.js', scripts);
   watch('src/**/*.sass', styles);
   watch('src/fonts/**/*', fonts);
-  watch('src/**/*.{jpg,jpeg,png,svg,gif}', images);
-  watch('src/**/*.{jpg,jpeg,png,svg,gif}', dataimg);
+  // watch('src/**/*.{jpg,jpeg,png,svg,gif}', images);
+  // watch('src/**/*.{jpg,jpeg,png,svg,gif}', dataimg);
   watch('src/**/*.{pug,json}', pug).on(
     'change',
     series(pug, browserSync.reload)
@@ -148,7 +132,8 @@ function startwatch() {
 }
 
 // ----------------[ Экспорты в Gulp ]----------------
-/* Чтобы Gulp увидел функцию, её нужно ему передать, что и делают строки ниже
+/*
+ * Чтобы Gulp увидел функцию, её нужно ему передать, что и делают строки ниже
  * Каждая переданная функция может быть вызвана из консоли командой gulp [название функции]
  * Например gulp browsersync (запустит локальный сервер и откроет автообновляемую страницу в браузере)
  */
@@ -174,15 +159,6 @@ exports.default = parallel(
   startwatch
 );
 
-exports.build = series(
-  cleandist,
-  images,
-  dataimg,
-  copywebp,
-  fonts,
-  pug,
-  styles,
-  scripts
-);
+exports.build = series(cleandist, fonts, images, dataimg, copywebp, pug, styles, scripts);
 
 exports.img = parallel(images, copywebp, dataimg);
