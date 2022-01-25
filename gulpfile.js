@@ -159,6 +159,15 @@ exports.default = parallel(
   startwatch
 );
 
-exports.build = series(cleandist, fonts, images, dataimg, copywebp, pug, styles, scripts);
+exports.build = series(
+  cleandist,
+  fonts,
+  images,
+  dataimg,
+  copywebp,
+  pug,
+  styles,
+  scripts
+);
 
 exports.img = parallel(images, copywebp, dataimg);
