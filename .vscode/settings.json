@@ -1,25 +1,25 @@
 {
   "workbench.startupEditor": "none",
-  "security.workspace.trust.untrustedFiles": "open",
   "editor.wordWrap": "on",
   "files.trimTrailingWhitespace": true,
-  "editor.hover.enabled": false,
+  "editor.hover.enabled": true,
   "editor.minimap.enabled": false,
   "editor.mouseWheelZoom": true,
-  "gitlens.defaultDateFormat": null,
-  "gitlens.advanced.messages": {
-    "suppressGitMissingWarning": true
-  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.tabSize": 2,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "git.suggestSmartCommit": false,
+  "git.ignoreRebaseWarning": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.colorTheme": "Ayu Mirage Bordered",
   "prettier.singleQuote": true,
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "prettier.jsxSingleQuote": true,
+  "[jade]": {
+    "editor.defaultFormatter": "mrmlnc.vscode-attrs-sorter"
   },
-  "explorer.confirmDragAndDrop": false
+  "[sass]": {
+    "editor.defaultFormatter": "syler.sass-indented"
+  },
 }
