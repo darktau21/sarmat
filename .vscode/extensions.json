@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
     "mrmlnc.vscode-attrs-sorter",
     "eg2.vscode-npm-script",
     "eamodio.gitlens",
