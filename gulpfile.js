@@ -1,79 +1,67 @@
-// ----------------[ Константы и переменные ]----------------
-// Здесь подключаются все плагины, и определяются важные константы
-const { src, dest, parallel, series, watch } = require('gulp'); // Определяем константы Gulp
-const browserSync = require('browser-sync').create(); // Подключаем Browsersync и создаём новое подключение
-const concat = require('gulp-concat'); // Нужен для объединения множества файлов в один
-const babel = require('gulp-babel'); // Компилятор JS
-const uglify = require('gulp-uglify-es').default; // Сжимает JS
-const pugcomp = require('gulp-pug'); // Препроцессор HTML
-const pugInclude = require('pug-include-glob'); // Позволяет импортировать все инклуды
-const sass = require('gulp-sass')(require('sass')); // Препроцессор CSS
-const sassglob = require('gulp-sass-glob'); // Препроцессор CSS
-const autoprefixer = require('gulp-autoprefixer'); // Автодобавление вендорных префиксов свойствам
-const cleancss = require('gulp-clean-css'); // Сжатие CSS
-const imagecomp = require('gulp-imagemin'); // Сжатие картиночек
-const ttf2woff2 = require('gulp-ttf2woff2'); // Конвертирует шрифты
-const del = require('del'); // Удаление файлов и  папок
-const data = require('gulp-data');
-const fs = require('fs');
+const { src, dest, parallel, series, watch } = require('gulp');
+const browserSync = require('browser-sync').create();
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify-es').default;
+const sass = require('gulp-sass')(require('sass'));
+const sassglob = require('gulp-sass-glob');
+const autoprefixer = require('gulp-autoprefixer');
+const cleancss = require('gulp-clean-css');
+const imagecomp = require('gulp-imagemin');
+const concat = require('gulp-concat');
+const del = require('del');
 
-// ----------------[ Функции ]----------------
-// Функция, определяющая логику работы Browsersync
 function browsersync() {
   browserSync.init({
-    // Инициализация Browsersync
-    server: { baseDir: 'dist/' }, // Указываем папку сервера
-    notify: false, // Отключаем уведомления в браузере (они бесят и никакой полезной инфы не несут)
-    online: true, // Онлайн режим, если нет интернета, ставим false
+    server: { baseDir: 'dist/' },
+    notify: false,
+    online: true,
   });
 }
 
-// Препроцессор HTML
-function pug() {
-  return src('src/pages/**/*.pug')
-    .pipe(
-      data(function (file) {
-        return JSON.parse(fs.readFileSync('src/data/config.json'));
-      })
-    )
-    .pipe(pugcomp({ plugins: [pugInclude()], pretty: true }))
-    .pipe(dest('dist/'));
-}
-
-// Работа со скриптами
 function scripts() {
-  return src(['src/**/*.js']) // Собираем все файлы JS
+  return src(['src/js/*.js'])
     .pipe(
       babel({
-        presets: ['@babel/preset-env'], // Компилятор, преобразует код из синтаксиса новых версий ES в старые, чем обеспечивает совместимость со старыми браузерами
+        presets: ['@babel/preset-env'],
       })
     )
-    .pipe(concat('bundle.min.js')) // Объединяем в один файл (файл всего один, поэтому эта строчка здесь чисто на всякий случай)
-    .pipe(uglify()) // Сжимаем JS
-    .pipe(dest('dist/')) // Выгружаем
-    .pipe(browserSync.stream()); // Триггерим Browsersync шоб он обновил страницу в браузере
+    .pipe(uglify())
+    .pipe(dest('dist/js/'))
+    .pipe(browserSync.stream());
 }
 
-// Стили
 function styles() {
-  return src('src/sass/main.sass') // Выбираем источник
-    .pipe(sassglob()) // Подрубаем плагин для подключения сразу кучи файлов (поддержка путей вида /papka/**/*)
-    .pipe(sass({ 'include css': true })) // Подрубаем препроцессор
-    .pipe(concat('styles.min.css')) // Собираем все файлы в один (в данном случае таким образом просто задаём имя файлу)
-    .pipe(autoprefixer()) // Создадим префиксы с помощью Autoprefixer
+  return src('src/sass/main.sass')
+    .pipe(sassglob())
+    .pipe(sass({ 'include css': true }))
+    .pipe(autoprefixer())
     .pipe(
-      // Минифицируем стили
       cleancss({
-        level: { 1: { specialComments: 0 } } /* , format: 'beautify' */,
+        level: { 1: { specialComments: 0 } }
       })
     )
-    .pipe(dest('dist/')) // Выгрузим результат в папку "dist/css/"
-    .pipe(browserSync.stream()); // Сделаем инъекцию в браузер
+    .pipe(concat('styles.min.css'))
+    .pipe(dest('dist/'))
+    .pipe(browserSync.stream());
 }
 
-// Картинки
 async function images() {
-  return src('src/includes/**/*.{jpg, jpeg,png,svg,gif}') // Берём все изображения из папки источника
+  return src('src/img/*.{jpg,jpeg,png,svg,gif}')
+    .pipe(
+      imagecomp([
+        imagecomp.gifsicle({ interlaced: true }),
+        imagecomp.mozjpeg({ quality: 85, progressive: true }),
+        imagecomp.optipng({ optimizationLevel: 5 }),
+        imagecomp.svgo({
+          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+        }),
+      ])
+    )
+    .pipe(dest('dist/img/'));
+}
+
+async function uploadimg() {
+  return src('src/uploads/**/*.{jpg, jpeg,png,svg,gif}')
     .pipe(
       imagecomp([
         imagecomp.gifsicle({ interlaced: true }),
@@ -84,75 +72,54 @@ async function images() {
         }),
       ])
     )
-    .pipe(dest('dist/img/')); // Выгружаем оптимизированные изображения в папку назначения
+    .pipe(dest('dist/uploads/'));
 }
 
 async function copywebp() {
-  return src('src/includes/**/*.webp').pipe(dest('dist/img/'));
+  return src('src/img/**/*.webp').pipe(dest('dist/img/'));
 }
 
-async function dataimg() {
-  return src('src/data/**/*.{jpg, jpeg,png,svg,gif}') // Берём все изображения из папки источника
-    .pipe(
-      imagecomp([
-        imagecomp.gifsicle({ interlaced: true }),
-        imagecomp.mozjpeg({ quality: 75, progressive: true }),
-        imagecomp.optipng({ optimizationLevel: 5 }),
-        imagecomp.svgo({
-          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-        }),
-      ])
-    )
-    .pipe(dest('dist/data/')); // Выгружаем оптимизированные изображения в папку назначения
+async function copyhtml() {
+  return src('src/**/*.html').pipe(dest('dist/'));
 }
 
-// Шрифты
-function fonts() {
-  return src('src/fonts/**/*.ttf')
-    .pipe(ttf2woff2({ clone: true }))
-    .pipe(dest('dist/fonts/'));
+async function copyfonts() {
+  return src('src/fonts/**/*').pipe(dest('dist/fonts/'));
 }
 
-// Очистка
 function cleandist() {
-  return del('dist/**/*', { force: true }); // Удаляем все содержимое папки "dist"
+  return del('dist/**/*', { force: true });
 }
 
-// Функция для слежки за изменением файлов
 function startwatch() {
   watch('src/**/*.js', scripts);
   watch('src/**/*.sass', styles);
-  watch('src/fonts/**/*', fonts);
-  // watch('src/**/*.{jpg,jpeg,png,svg,gif}', images);
+  watch('src/fonts/**/*', copyfonts);
+  watch('src/img/**/*.{jpg,jpeg,png,svg,gif}', images);
+  watch('src/img/**/*.webp', copywebp);
   // watch('src/**/*.{jpg,jpeg,png,svg,gif}', dataimg);
-  watch('src/**/*.{pug,json}', pug).on(
+  watch('src/**/*.html', copyhtml).on(
     'change',
-    series(pug, browserSync.reload)
+    series(copyhtml, browserSync.reload)
   );
 }
 
-// ----------------[ Экспорты в Gulp ]----------------
-/*
- * Чтобы Gulp увидел функцию, её нужно ему передать, что и делают строки ниже
- * Каждая переданная функция может быть вызвана из консоли командой gulp [название функции]
- * Например gulp browsersync (запустит локальный сервер и откроет автообновляемую страницу в браузере)
- */
 exports.browsersync = browsersync;
 exports.scripts = scripts;
-exports.pug = pug;
 exports.styles = styles;
 exports.images = images;
-exports.dataimg = dataimg;
+exports.uploadimg = uploadimg;
 exports.copywebp = copywebp;
-exports.fonts = fonts;
+exports.copyfonts = copyfonts;
+exports.copyhtml = copyhtml;
 exports.cleandist = cleandist;
-// Дефолтный таск (запускает перечисленные функции командой gulp без всяких аргументов)
+
 exports.default = parallel(
-  fonts,
+  copyhtml,
+  copyfonts,
   images,
-  dataimg,
+  uploadimg,
   copywebp,
-  pug,
   styles,
   scripts,
   browsersync,
@@ -161,13 +128,11 @@ exports.default = parallel(
 
 exports.build = series(
   cleandist,
-  fonts,
+  copyhtml,
+  copyfonts,
   images,
-  dataimg,
+  uploadimg,
   copywebp,
-  pug,
   styles,
   scripts
 );
-
-exports.img = parallel(images, copywebp, dataimg);

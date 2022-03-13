@@ -1,10 +1,6 @@
-// Импортируем все стили
-// Скорее всего в этот файл вообще не нужно лезть, разве что если нужно поправить глобальные стили
 @import 'utils/*.sass'
-@import '../includes/**/*.sass'
-@import '../pages/**/*.sass'
+@import '../styles/*.sass'
 
-// Глобальные стили
 body
   margin: 0
   padding: 0
@@ -13,14 +9,10 @@ body
   font-size: $text-size
   color: $text-color
   min-width: 320px
+  box-sizing: border-box
   position: relative
   overflow-x: hidden
-
-.wrapper
-  background-image: url(img/background.png)
-  background-repeat: no-repeat
-  background-size: cover
-  background-color: $main-color
+  background: url(img/background.png)
 
 .container
   max-width: 1170px

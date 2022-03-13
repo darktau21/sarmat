@@ -1,4 +1,3 @@
-// Миксин для более удобного подключения стилей
 @mixin font($font-family, $font-style, $font-weight, $font-src)
   @font-face
     font-family: $font-family
@@ -6,7 +5,8 @@
     font-weight: $font-weight
     src: url('fonts/#{$font-family}/#{$font-src}.woff2') format('woff2'), url('fonts/#{$font-family}/#{$font-src}.ttf') format('ttf')
 
-// Подключение шрифтов
+// Здесь подключаем шрифты через @include font(бла, бла, бла, бла)
+
 @include font('Montserrat', normal, 100, Montserrat-Thin)
 @include font('Montserrat', italic, 100, Montserrat-ThinItalic)
 @include font('Montserrat', normal, 200, Montserrat-ExtraLight)
