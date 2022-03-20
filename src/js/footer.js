@@ -1,3 +1,8 @@
-let currentDate = new Date();
-let copyright = document.querySelector('.footer__copyright');
-copyright.textContent += currentDate.getFullYear();
+'use strict';
+
+const copyrightYear = document.querySelector('.js_copyright-year');
+
+window.addEventListener('DOMContentLoaded', () => {
+  let date = new Date();
+  copyrightYear.textContent = date.getFullYear();
+}, { once: true });

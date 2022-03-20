@@ -1,20 +1,29 @@
-.articles-nav
+.sub-menu
   background: $main-color
   padding: 15px 25px
   color: $additional-color
+  position: sticky
+  min-width: 250px
+  width: 250px
+  top: 5%
+  margin-right: 25px
+  @media ( max-width: 992px )
+    position: static
+    margin-right: 0
+    margin-bottom: 20px
   &__title
     font-size: 36px
     font-weight: 700
     margin-bottom: 20px
-  &__item, &__item a
+  &__item
     color: $additional-color
     font-size: 18px
     margin: 15px 0
     font-weight: 500
     padding: 0 3px
-  
-    &:hover,&_active
-        border-bottom: 3px solid $additional-color
+    cursor: pointer
+    &:hover, &_active
+        border-left: 3px solid $additional-color
         transition: border 0.15s linear
   &__list
     display: flex
