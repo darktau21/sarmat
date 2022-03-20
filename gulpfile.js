@@ -46,30 +46,24 @@ function styles() {
 }
 
 async function images() {
-  return src('src/img/*.{jpg,jpeg,png,svg,gif}')
+  return src('src/img/*.{jpg,jpeg,png,gif}')
     .pipe(
       imagecomp([
         imagecomp.gifsicle({ interlaced: true }),
         imagecomp.mozjpeg({ quality: 85, progressive: true }),
         imagecomp.optipng({ optimizationLevel: 5 }),
-        imagecomp.svgo({
-          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-        }),
       ])
     )
     .pipe(dest('dist/img/'));
 }
 
 async function uploadimg() {
-  return src('src/uploads/**/*.{jpg, jpeg,png,svg,gif}')
+  return src('src/uploads/**/*.{jpg,jpeg,png,gif}')
     .pipe(
       imagecomp([
         imagecomp.gifsicle({ interlaced: true }),
         imagecomp.mozjpeg({ quality: 75, progressive: true }),
         imagecomp.optipng({ optimizationLevel: 5 }),
-        imagecomp.svgo({
-          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-        }),
       ])
     )
     .pipe(dest('dist/uploads/'));
@@ -77,6 +71,10 @@ async function uploadimg() {
 
 async function copywebp() {
   return src('src/img/**/*.webp').pipe(dest('dist/img/'));
+}
+
+async function copysvg() {
+  return src('src/img/**/*.svg').pipe(dest('dist/img/'));
 }
 
 async function copyhtml() {
@@ -95,8 +93,10 @@ function startwatch() {
   watch('src/**/*.js', scripts);
   watch('src/**/*.sass', styles);
   watch('src/fonts/**/*', copyfonts);
-  watch('src/img/**/*.{jpg,jpeg,png,svg,gif}', images);
+  watch('src/img/**/*.{jpg,jpeg,png,gif}', images);
+  watch('src/uploads/**/*.{jpg,jpeg,png,gif}', uploadimg);
   watch('src/img/**/*.webp', copywebp);
+  watch('src/img/**/*.svg', copysvg);
   // watch('src/**/*.{jpg,jpeg,png,svg,gif}', dataimg);
   watch('src/**/*.html', copyhtml).on(
     'change',
@@ -110,6 +110,7 @@ exports.styles = styles;
 exports.images = images;
 exports.uploadimg = uploadimg;
 exports.copywebp = copywebp;
+exports.copysvg = copysvg;
 exports.copyfonts = copyfonts;
 exports.copyhtml = copyhtml;
 exports.cleandist = cleandist;
@@ -120,6 +121,7 @@ exports.default = parallel(
   images,
   uploadimg,
   copywebp,
+  copysvg,
   styles,
   scripts,
   browsersync,
@@ -133,6 +135,7 @@ exports.build = series(
   images,
   uploadimg,
   copywebp,
+  copysvg,
   styles,
   scripts
 );

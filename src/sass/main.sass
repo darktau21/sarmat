@@ -12,12 +12,17 @@ body
   box-sizing: border-box
   position: relative
   overflow-x: hidden
-  background: $main-color url(img/background.png) no-repeat center / cover
+  background-color: $bg-color
+  background-image: url(img/background.jpg)
+  background-size: cover
+  background-repeat: repeat-y
 
 .container
   max-width: 1170px
   margin: 0 auto
-  padding: 0 10px
+  padding:
+    left: +calculateRem(10px)
+    right: +calculateRem(10px)
 
 *,
 ::after,
@@ -47,18 +52,7 @@ h6
   font-weight: inherit
   font-size: inherit
 
-// Стили для полей ввода в разных их состояниях
-// input, textarea
-//   outline: none
-//   &:focus:required:invalid
-//     border-color: red
-//   &:required:valid
-//     border-color: green
-
-// ::placeholder
-//   color: $placeholder-color
-
 // Стили для выделенных объектов (цвет и фон выделения для текста)
-// ::selection
-//   background-color: $accent-color
-//   color: #fff
+::selection
+  background-color: lighten($bg-color, 20)
+  color: #fff

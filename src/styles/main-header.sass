@@ -1,0 +1,13 @@
+.main-header
+  padding:
+    top: +calculateRem(10px)
+    left: +calculateRem(5px)
+    right: +calculateRem(5px)
+  &__nav
+    padding-bottom: 10px
+    @media screen and ( min-width: 992px )
+      padding-bottom: 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: 2px solid rgba($additional-color, 0.5)
