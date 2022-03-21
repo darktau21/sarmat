@@ -5,13 +5,13 @@ let urlParams = new URLSearchParams(urlString);
 let currentPage = urlParams.get('page');
 const articles = document.querySelectorAll('.js_article');
 const links = document.querySelectorAll('.js_sub-menu-list li');
-console.log(currentPage);
 
 links.forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault;
     history.pushState(null, null, link.dataset.article);
     changeArticle();
+    window.scrollTo(0, 0);
   });
 });
 

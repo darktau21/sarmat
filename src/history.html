@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#232a3e" />
-    <title>Музей Царство почв - мир под ногами | Экспозиция</title>
+    <title>Музей Царство почв - мир под ногами | История</title>
     <link rel="stylesheet" href="styles.min.css" />
     <link type="image/x-icon" rel="shortcut icon" href="img/sf-logo.svg" />
   </head>
@@ -28,11 +28,13 @@
             <li class="main-menu__item">
               <a href="/">Главная</a>
             </li>
-            <li class="main-menu__item main-menu__item_active">
+            <li class="main-menu__item">
               <a href="/exposition.html?page=o-pochve">Экспозиция</a>
             </li>
             <li class="main-menu__item"><a href="#">Фотоархив</a></li>
-            <li class="main-menu__item"><a href="/history.html?page=1">История</a></li>
+            <li class="main-menu__item main-menu__item_active">
+              <a href="/history.html?page=1">История</a>
+            </li>
             <li class="main-menu__item"><a href="/laboratories.html">Лаборатории</a></li>
             <li class="main-menu__item"><a href="/contacts.html">Контакты</a></li>
           </ul>
@@ -41,42 +43,8 @@
     </header>
     <main>
       <div class="container">
-        <div class="exposition__wrapper">
-          <aside class="sub-menu">
-            <ul class="sub-menu__list js_sub-menu-list">
-              <li class="sub-menu__item" data-article="?page=o-pochve" data-name="o-pochve">
-                О почве
-              </li>
-              <li
-                class="sub-menu__item"
-                data-article="?page=morfologiya-pochv"
-                data-name="morfologiya-pochv"
-              >
-                Морфология почв
-              </li>
-              <li class="sub-menu__item" data-article="?page=fizika-pochv" data-name="fizika-pochv">
-                Физика почв
-              </li>
-              <li
-                class="sub-menu__item"
-                data-article="?page=biologiya-pochv"
-                data-name="biologiya-pochv"
-              >
-                Биология почв
-              </li>
-              <li class="sub-menu__item" data-article="?page=himiya-pochv" data-name="himiya-pochv">
-                Химия почв
-              </li>
-              <li
-                class="sub-menu__item"
-                data-article="?page=zalozhenie-pochvennih-rezervov"
-                data-name="zalozhenie-pochvennih-rezervov"
-              >
-                Заложение почвенных разрезов
-              </li>
-            </ul>
-          </aside>
-          <div class="exposition__article">
+        <div class="history__wrapper">
+          <div class="history__article">
             <article class="article js_article" data-name="o-pochve">
               <h1 class="article__title">О почве</h1>
               <p class="article__paragraph">
@@ -407,7 +375,7 @@
                 полуямы (контрольные), прикопки (поверхностные).
               </p>
               <p class="article__paragraph">
-                Полные, или основные, разрезы делают с таким расчетом, чтобы были
+                <a href="">Полные, или основные, разрезы</a> делают с таким расчетом, чтобы были
                 видны все почвенные горизонты и частично верхняя часть неизмененной или
                 малоизмененной материнской породы. Их закладывают в наиболее типичных, характерных
                 местах. Их назначение – детальное изучение морфолого-генетических признаков почв с
@@ -417,14 +385,14 @@
                 исследований и картирования почв почвенные разрезы закладывают на глубину 1,0–2 м.
               </p>
               <p class="article__paragraph">
-                Полуямы, или контрольные разрезы закладывают на меньшую глубину – от
+                <a href="">Полуямы, или контрольные разрезы </a>закладывают на меньшую глубину – от
                 75 до 125 см, обычно до начала материнской породы. Он служат для дополнительного
                 (контрольного) изучения основной части почвенного профиля – мощности почвенных
                 гумусовых и других горизонтов, глубины и залегания солей, степени выщелоченности,
                 оподзоленности, солонцеватости, солончаковатости, и др.
               </p>
               <p class="article__paragraph">
-                Прикопки, или мелкие поверхностные разрезы глубиною менее 75 см,
+                <a href="">Прикопки, или мелкие поверхностные разрезы</a> глубиною менее 75 см,
                 служат главным образом для уточнения почвенных границ, выявленных полными разрезами
                 и полуямами.
               </p>
@@ -447,7 +415,7 @@
                 горизонтов, затем – из верхних. Так наносится наименьший ущерб природе.
               </p>
               <p class="article__paragraph">
-                Когда яма готова, приступают к описанию почвы (бланк описания
+                Когда яма готова,<a href=""> приступают к описанию почвы</a>(бланк описания
                 почвенного разреза), начиная запись в полевом дневнике с указания номера разреза,
                 его географического местоположения, а также положения относительно постоянных
                 ориентиров (привязка). Записи в полевом дневнике делают сразу начисто, разборчиво,
@@ -463,6 +431,15 @@
                 почв и описанию почвенного разреза.
               </p>
             </article>
+            <div class="paginator">
+              <div class="paginator__wrapper js_paginator">
+                <div class="paginator__prev paginator__btn js_paginator-prev">&#171;</div>
+                <div class="paginator__first paginator__btn paginator__btn_active js_paginator-first">#</div>
+                <div class="paginator__second paginator__btn js_paginator-second">#</div>
+                <div class="paginator__third paginator__btn js_paginator-third">#</div>
+                <div class="paginator__next paginator__btn js_paginator-next">&#187;</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -475,12 +452,16 @@
             <li class="mobile-menu__item">
               <a href="/" class="mobile-menu__link">Главная</a>
             </li>
-            <li class="mobile-menu__item mobile-menu__item_active">
+            <li class="mobile-menu__item">
               <a href="/exposition.html?page=o-pochve" class="mobile-menu__link">Экспозиция</a>
             </li>
             <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">Фотоархив</a></li>
-            <li class="mobile-menu__item"><a href="/history.html?page=1" class="mobile-menu__link">История</a></li>
-            <li class="mobile-menu__item"><a href="/laboratories.html" class="mobile-menu__link">Лаборатории</a></li>
+            <li class="mobile-menu__item mobile-menu__item_active">
+              <a href="/history.html?page=1" class="mobile-menu__link">История</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="/laboratories.html" class="mobile-menu__link">Лаборатории</a>
+            </li>
             <li class="mobile-menu__item">
               <a href="/contacts.html" class="mobile-menu__link">Контакты</a>
             </li>
@@ -514,20 +495,32 @@
           />
           <div class="socials">
             <div class="socials__item socials__item_vk">
-              <a href="https://vk.com/soilsfedu" target="_blank" rel="noopener noreferrer"><img src="img/vk-icon.svg" alt="Мы ВКонтакте" /></a>
+              <a href="https://vk.com/soilsfedu" target="_blank" rel="noopener noreferrer"
+                ><img src="img/vk-icon.svg" alt="Мы ВКонтакте"
+              /></a>
             </div>
             <div class="socials__item socials__item_inst">
-              <a href="https://www.instagram.com/soil.sfedu/" target="_blank" rel="noopener noreferrer"><img src="img/inst-icon.svg" alt="Мы в Instagram" /></a>
+              <a
+                href="https://www.instagram.com/soil.sfedu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><img src="img/inst-icon.svg" alt="Мы в Instagram"
+              /></a>
             </div>
             <div class="socials__item socials__item_fb">
-              <a href="https://www.facebook.com/groups/579073509395215" target="_blank" rel="noopener noreferrer"><img src="img/fb-icon.svg" alt="Мы в Facebook" /></a>
+              <a
+                href="https://www.facebook.com/groups/579073509395215"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><img src="img/fb-icon.svg" alt="Мы в Facebook"
+              /></a>
             </div>
           </div>
         </div>
       </div>
     </footer>
     <script src="js/mobile-menu.js"></script>
-    <script src="js/exposition.js"></script>
+    <script src="js/history.js"></script>
     <script src="js/footer.js"></script>
   </body>
 </html>
