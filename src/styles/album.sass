@@ -1,5 +1,24 @@
 .album
   width: 100%
+  &__btn
+    cursor: pointer
+    background-color: red
+    padding: 5px
+  &__img-container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    max-height: 80vh
+  &__img-block
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    max-height: 80vh
+    width: 100%
+  &__img
+    width: auto
+    height: auto
   &__thumbnails
     border-radius: 5px
     overflow: hidden
@@ -15,6 +34,7 @@
     overflow-x: hidden
   &__thumbnails-view
     display: flex
+    align-items: center
     width: 200px
     transition: 0.3s
     // &::-webkit-scrollbar
