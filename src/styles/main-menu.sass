@@ -1,7 +1,7 @@
 .main-menu
-  display: none
-  @media screen and ( min-width: 992px )
-    display: block
+  display: block
+  @media screen and ( max-width: 1199px )
+    display: none
   &__list
     display: flex
     justify-content: space-between
@@ -9,14 +9,15 @@
   &__item
     margin-bottom: -2px
     & a
+      display: lock
       height: 100%
       line-height: 60px
-      padding: 22px 15px
+      padding: 18px 10px
       text-transform: uppercase
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
       color: rgba($additional-color, 0.7)
-      font-family: Oswald, sans-serif
       transition: color 0.1s linear
+      font-weight: 500
     & a:hover
       color: $additional-color
     &:last-child

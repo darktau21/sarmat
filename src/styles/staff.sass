@@ -1,35 +1,27 @@
 .staff
-  &__wrapper
-    background-color: $additional-color
-    border-top: 20px solid $main-color
-    padding: 10px
-    @media ( max-width: 992px )
-      margin-top: 30px
-    margin-top: 70px
-    margin-bottom: 30px
   &__title
     font-weight: 700
     font-size: +calculateRem(36px)
     text-shadow: 0px 3px 13px rgba(0, 0, 0, 0.25)
-    padding-bottom: 20px
+    padding: 20px
   &__cards
     display: flex
     flex-wrap: wrap
-    align-items: center
+    align-items: stretch
     align-content: center
     justify-content: space-around
   &__card
     display: flex
     flex-direction: column
     align-items: center
-    border: 2px solid lighten($bg-color, 10)
-    background-color: darken($additional-color, 15)
+    border: 2px solid lighten($text-color, 90)
+    background-color: darken($additional-color, 5)
     max-width: 280px
     padding: 20px
     margin-bottom: 10px
   &__img
-    max-width: 95px
-    max-height: 120px
+    max-width: 100%
+    max-height: 150px
   &__name
     padding: 7px 0
     text-align: center
@@ -39,6 +31,7 @@
     text-align: center
     padding: 7px 0
     padding-bottom: 20px
+    flex: 100%
   &__more
     padding: 10px 20px
     background-color: $bg-color

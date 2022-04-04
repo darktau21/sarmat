@@ -1,27 +1,49 @@
 'use strict';
 
-const menuOpenBtn = document.querySelector('.js_menu-mobile-btn-open');
-const menuList = document.querySelector('.js_menu-mobile');
-
-menuOpenBtn.addEventListener('click', openMenu);
-menuList.addEventListener('click', (e) => {
-  if (
-    e.target.classList.contains('js_menu-mobile-btn-close') ||
-    e.target.classList.contains('js_menu-mobile-wrapper')
-  ) {
-    closeMenu();
+class MobileMenu {
+  constructor({ openBtnSelector, wrapperSelector, menuSelector, closeBtnSelector, activeClass }) {
+    this.menuSelector = menuSelector;
+    this.wrapperSelector = wrapperSelector;
+    this.openBtnSelector = openBtnSelector;
+    this.closeBtnSelector = closeBtnSelector;
+    this.activeClass = activeClass;
+    this.menu = document.querySelector(`.${menuSelector}`);
+    this.openBtn = document.querySelector(`.${openBtnSelector}`);
   }
+
+  openMenu() {
+    window.scrollTo(0, 0);
+    this.menu.classList.add(this.activeClass);
+    document.body.style.overflowY = 'hidden';
+  }
+
+  closeMenu() {
+    this.menu.classList.remove(this.activeClass);
+    document.body.style.overflowY = '';
+  }
+
+  init() {
+    this.openBtn.addEventListener('click', () => {
+      this.openMenu();
+    });
+
+    this.menu.addEventListener('click', (e) => {
+      if (
+        e.target.classList.contains(this.closeBtnSelector) ||
+        e.target.classList.contains(this.wrapperSelector)
+      ) {
+        this.closeMenu();
+      }
+    });
+  }
+}
+
+const mobileMenu = new MobileMenu({
+  menuSelector: 'js_mobile-menu',
+  wrapperSelector: 'js_mobile-menu-wrapper',
+  openBtnSelector: 'js_mobile-menu-openBtn',
+  closeBtnSelector: 'js_mobile-menu-closeBtn',
+  activeClass: 'mobile-menu_active'
 });
 
-function openMenu() {
-  menuList.classList.add('mobile-menu_active');
-  document.body.style.overflowY = 'hidden';
-  menuList.style.transitionDelay = '0s';
-  window.scrollTo(0, 0);
-}
-
-function closeMenu() {
-  menuList.classList.remove('mobile-menu_active');
-  document.body.style.overflowY = '';
-  menuList.style.transitionDelay = '0.3s';
-}
+mobileMenu.init();

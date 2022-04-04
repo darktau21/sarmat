@@ -1,135 +1,118 @@
 'use strict';
 
-window.addEventListener('load', () => {
-  let windowInnerHeight = window.innerHeight;
-  const albumImg = document.querySelector('.js_album-img');
-  const albumImgBlock = document.querySelector('.js_album-img-block');
-  const album = document.querySelector('.js_album');
-  const thumbnailsContainer = document.querySelector('.js_thumbnails');
-  const thumbnailsImgs = thumbnailsContainer.querySelectorAll('img');
-  let albumWidth = album.offsetWidth - 75;
-  const thumbnailsPrev = document.querySelector('.js_album-thumbnails-prev');
-  const thumbnailsNext = document.querySelector('.js_album-thumbnails-next');
-  const albumPrev = document.querySelector('.js_album-prev');
-  const albumNext = document.querySelector('.js_album-next');
-  let thumbOffset = 0;
-  let thumbRemain = 0;
-  let allThumbsWidth = 0;
-  albumImg.style.maxWidth = `${albumWidth}px`;
-  albumImg.style.maxHeight = `${windowInnerHeight * 0.7}px`;
-  albumImgBlock.style.minHeight = `${windowInnerHeight * 0.8}px`;
-  thumbnailsContainer.style.width = `${albumWidth}px`;
+class Menu {
+  constructor({ articlesSelector, linksSelector, articleActiveClass, linkActiveClass }) {
+    this.articles = document.querySelectorAll(`.${articlesSelector}`);
+    this.links = document.querySelectorAll(`.${linksSelector}`);
+    this.articleActiveClass = articleActiveClass;
+    this.linkActiveClass = linkActiveClass;
 
-  const viewPatterns = [0];
-
-  let imgsWidthSum = 0;
-  let viewPatternN = 0;
-  for (let i = 0; i < thumbnailsImgs.length; i++) {
-    imgsWidthSum += thumbnailsImgs[i].offsetWidth;
-    allThumbsWidth += thumbnailsImgs[i].offsetWidth;
-    thumbnailsImgs[i].setAttribute('data-view-pattern', viewPatternN);
-    thumbnailsImgs[i].setAttribute('data-num', i);
-    if (imgsWidthSum >= albumWidth) {
-      thumbnailsImgs[i].removeAttribute('data-view-pattern');
-      thumbnailsImgs[i].removeAttribute('data-num');
-      viewPatternN += 1;
-      imgsWidthSum -= thumbnailsImgs[i].offsetWidth;
-      viewPatterns.push(imgsWidthSum);
-      imgsWidthSum = 0;
-      allThumbsWidth -= thumbnailsImgs[i].offsetWidth;
-      i--;
-    }
+    this.urlString;
+    this.urlParams;
+    this.currentPage;
   }
 
-  for (let i = 1; i < viewPatterns.length; i++) {
-    viewPatterns[i] += viewPatterns[i - 1];
+  getUrlString() {
+    this.urlString = document.location.search;
   }
 
-  thumbRemain = allThumbsWidth - albumWidth - viewPatterns[viewPatterns.length - 1];
-  if (thumbRemain < 0) {
-    viewPatterns[viewPatterns.length - 1] += thumbRemain + 5;
+  getUrlParams() {
+    this.urlParams = new URLSearchParams(this.urlString);
   }
 
-  thumbnailsImgs[0].classList.add('album__thumbnail_active');
-  let path = thumbnailsImgs[0].getAttribute('src');
-  path = path.replace('thumbnails/', '');
-  albumImg.setAttribute('src', path);
+  getCurrentPage() {
+    this.currentPage = this.urlParams.get('page');
+  }
 
-  let activeImg = 0;
-
-  albumPrev.addEventListener('click', () => {
-    if (activeImg > 0) {
-      activeImg -= 1;
-      let imgPattern;
-      thumbnailsImgs.forEach((img) => {
-        img.classList.remove('album__thumbnail_active');
-        if (img.dataset.num == activeImg) {
-          img.classList.add('album__thumbnail_active');
-          let path = img.getAttribute('src');
-          path = path.replace('thumbnails/', '');
-          albumImg.setAttribute('src', path);
-          imgPattern = +img.dataset.viewPattern;
-          return;
-        }
-        if (thumbOffset != imgPattern) {
-          thumbOffset = imgPattern;
-          changeThumbPattern();
-        }
-      });
-      console.log(activeImg)
-    }
-  });
-
-  albumNext.addEventListener('click', () => {
-    if (activeImg < thumbnailsImgs.length - 1) {
-      activeImg += 1;
-      let imgPattern;
-      thumbnailsImgs.forEach((img) => {
-        img.classList.remove('album__thumbnail_active');
-        if (img.dataset.num == activeImg) {
-          img.classList.add('album__thumbnail_active');
-          let path = img.getAttribute('src');
-          path = path.replace('thumbnails/', '');
-          albumImg.setAttribute('src', path);
-          imgPattern = +img.dataset.viewPattern;
-          return;
-        }
-        if (thumbOffset != imgPattern) {
-          thumbOffset = imgPattern;
-          changeThumbPattern();
-        }
-      });
-      console.log(activeImg)
-    }
-  });
-
-  thumbnailsContainer.addEventListener('click', (e) => {
-    thumbnailsImgs.forEach((img) => {
-      img.classList.remove('album__thumbnail_active');
+  changeArticle() {
+    this.getUrlString();
+    this.getUrlParams();
+    this.getCurrentPage();
+    this.articles.forEach((article) => {
+      article.classList.remove(this.articleActiveClass);
+      if (article.dataset.name == this.currentPage) {
+        article.classList.add(this.articleActiveClass);
+      }
     });
-    e.target.classList.add('album__thumbnail_active');
-    activeImg = +e.target.dataset.num;
-    console.log(activeImg);
-    let path = e.target.getAttribute('src');
-    path = path.replace('thumbnails/', '');
-    albumImg.setAttribute('src', path);
-  });
-
-  thumbnailsNext.addEventListener('click', () => {
-    if (thumbOffset < viewPatterns.length - 1) {
-      thumbOffset += 1;
-      changeThumbPattern();
-    }
-  });
-
-  thumbnailsPrev.addEventListener('click', () => {
-    if (thumbOffset > 0) {
-      thumbOffset -= 1;
-      changeThumbPattern();
-    }
-  });
-
-  function changeThumbPattern() {
-    thumbnailsContainer.style.transform = `translateX(-${viewPatterns[thumbOffset]}px)`;
   }
+
+  setLinksListeners() {
+    this.links.forEach((link) => {
+      link.addEventListener('click', () => {
+        history.pushState(null, null, link.dataset.article);
+        this.changeArticle();
+        this.changeActiveLink();
+        window.scrollTo(0, 0);
+      });
+    });
+  }
+
+  init() {
+    this.getUrlString();
+    this.getUrlParams();
+    this.getCurrentPage();
+    this.changeArticle();
+    this.setLinksListeners();
+  }
+}
+
+// const AlbumsMenu = new Menu({
+//   articlesSelector: 'js_album',
+//   linksSelector: 'js_album-link',
+//   articleActiveClass: 'album_active',
+// });
+
+// AlbumsMenu.init();
+
+class Album {
+  constructor({
+    albumSelector,
+    thumbnailsSelector,
+    thumbnailsInnerSelector,
+    thumbnailsPrevBtnSelector,
+    thumbnailsNextBtnSelector,
+  }) {
+    this.thumbnailsInner = document.querySelector(`.${albumSelector} .${thumbnailsInnerSelector}`);
+    this.thumbnailsImgs = document.querySelectorAll(`.${albumSelector} img`);
+    this.thumbnailsPrevBtn = document.querySelector(
+      `.${albumSelector} .${thumbnailsPrevBtnSelector}`
+    );
+    this.thumbnailsNextBtn = document.querySelector(
+      `.${albumSelector} .${thumbnailsNextBtnSelector}`
+    );
+
+    this.thumbnailsWidth = +document.querySelector(`.${albumSelector} .${thumbnailsSelector}`)
+      .offsetWidth;
+    this.thumbnailsOffsetPatterns = [0];
+  }
+
+  calcThumbnailsOffset() {
+    let imgsWidthSum = 0;
+    let allThumbsWidth = 0;
+
+    for (let i = 0; i < this.thumbnailsImgs.length; i++) {
+      let thumbnailWidth = this.thumbnailsImgs[i].offsetWidth;
+
+      imgsWidthSum += thumbnailWidth;
+      allThumbsWidth += thumbnailWidth;
+
+      if (imgsWidthSum >= this.thumbnailsWidth) {
+        allThumbsWidth -= thumbnailWidth;
+        this.thumbnailsOffsetPatterns.push(allThumbsWidth);
+        imgsWidthSum = 0;
+      }
+    }
+  }
+}
+
+const Zaharov = new Album({
+  albumSelector: 'album_zaharov',
+  thumbnailsSelector: 'js_thumbnails-window',
+  thumbnailsInnerSelector: 'js_thumbnails-inner',
+  thumbnailsPrevBtnSelector: 'js_thumbnails-prev',
+  thumbnailsNextBtnSelector: 'js_thumbnails-next',
 });
+
+Zaharov.calcThumbnailsOffset();
+console.log(Zaharov.thumbnailsOffsetPatterns);
+console.log(Zaharov.thumbnailsWidth);

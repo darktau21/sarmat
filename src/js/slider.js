@@ -1,84 +1,225 @@
 'use strict';
 
-window.addEventListener('load', () => {
-  const slidesArticles = [
-    {
-      title: 'Морфология почв',
-      text: 'Сумма внешних признаков, которые являются результатом процессов формирования и поэтому отражают происхождение почв, историю их развития, их физические и химические свойства.',
-      link: '/exposition.html?page=morfologiya-pochv',
-    },
-    {
-      title: 'Биология почв',
-      text: 'Почва — это среда обитания множества организмов. Существа, обитающие в почве, называются педобионтами. Наименьшими из них являются бактерии, водоросли, грибки и одноклеточные организмы, обитающие в почвенных водах.',
-      link: '/exposition.html?page=biologiya-pochv',
-    },
-    {
-      title: 'Химия почв',
-      text: 'Изучение химических основ почвообразования и плодородия почв, путем исследования состава, свойств почв и протекающих в почвах процессов на ионно-молекулярном и коллоидном уровнях.',
-      link: '/exposition.html?page=himiya-pochv',
-    },
-    {
-      title: 'ФИЗИКА ПОЧВ',
-      text: 'Физические свойства и процессы в почвах. Особое внимание уделяется движению воды, переносу питательных веществ, теплопроводности, транспортировке газа. Кроме того, прочность почвы, ее механика, уплотнение, несущая способность, набухание и усадка, макропоры и т. д.',
-      link: '/exposition.html?page=fizika-pochv',
-    },
-    {
-      title: 'О почве',
-      text: 'Почва — это особое природное тело, образующееся на поверхности Земли, в результате взаимодействия живой (органической) и неживой (неорганической) природы. Важнейшим свойством почвы, отличающим её от горных пород, является плодородие.',
-      link: '/exposition.html?page=o-pochve',
-    },
-  ];
+class Slider {
+  constructor({
+    bodySelector,
+    imgsWindowSelector,
+    imgsInnerSelector,
+    articleTitlesSelector,
+    articleTextsSelector,
+    articleLinksSelector,
+    prevBtnSelector,
+    nextBtnSelector,
+    activeClass,
+    slideTime,
+  }) {
+    this.body = document.querySelector(`.${bodySelector}`);
+    this.imgsWindow = document.querySelector(`.${imgsWindowSelector}`);
+    this.imgsInner = document.querySelector(`.${imgsInnerSelector}`);
+    this.imgs = document.querySelectorAll(`.${imgsInnerSelector} img`);
+    this.articleTitles = document.querySelectorAll(`.${articleTitlesSelector}`);
+    this.articleTexts = document.querySelectorAll(`.${articleTextsSelector}`);
+    this.articleLinks = document.querySelectorAll(`.${articleLinksSelector}`);
+    this.prevBtn = document.querySelector(`.${prevBtnSelector}`);
+    this.nextBtn = document.querySelector(`.${nextBtnSelector}`);
+    this.activeClass = activeClass;
+    this.slideTime = slideTime * 1000;
 
-  let offset = 0;
+    this.currentSlide = 0;
+    this.imgsWindowWidth;
+    this.offsetPatterns = this.calcOffset();
+    this.slideTimer;
+    this.windowWidth = document.documentElement.clientWidth;
+    this.posInit;
+    this.posX1;
+    this.posX2;
+    this.posFinal;
+    this.posThreshold;
+  }
 
-  const prevBtn = document.querySelector('.js_slider-prev');
-  const nextBtn = document.querySelector('.js_slider-next');
-  const prevBtnMob = document.querySelector('.js_slider-prev-mob');
-  const nextBtnMob = document.querySelector('.js_slider-next-mob');
-  const articleTitle = document.querySelector('.js_slider-title');
-  const articleText = document.querySelector('.js_slider-text');
-  const articleLink = document.querySelector('.js_slider-link');
-  const slidesImgsContainer = document.querySelector('.js_slider-img-container');
-  const slidesImgsInner = document.querySelector('.js_slider-img-inner');
-  const slidesImgs = document.querySelectorAll('.js_slider-img');
-  const imgWidth = window.getComputedStyle(slidesImgsContainer).width;
+  calcImgsWindowWidth() {
+    this.imgsWindowWidth = this.imgsWindow.clientWidth;
+    this.posThreshold = this.imgsWindowWidth * 0.20;
+  }
 
-  slidesImgs.forEach((img) => {
-    img.style.width = imgWidth;
+  setImgsWidth() {
+    this.imgs.forEach((img) => {
+      img.style.width = `${this.imgsWindowWidth}px`;
+    });
+  }
+
+  calcOffset() {
+    const offsetPatterns = [0];
+    let widthSum = 0;
+
+    this.imgs.forEach(() => {
+      widthSum += this.imgsWindowWidth;
+      offsetPatterns.push(widthSum);
+    });
+
+    offsetPatterns.pop();
+
+    this.offsetPatterns = offsetPatterns;
+  }
+
+  checkSlide() {
+    if (this.currentSlide >= this.imgs.length) {
+      this.currentSlide = 0;
+    } else if (this.currentSlide < 0) {
+      this.currentSlide = this.imgs.length - 1;
+    }
+  }
+
+  changeContent(elementsArray) {
+    elementsArray.forEach((elem) => {
+      elem.classList.remove(this.activeClass);
+    });
+    elementsArray[this.currentSlide].classList.add(this.activeClass);
+  }
+
+  setTransform(px) {
+    this.imgsInner.style.transform = `translateX(-${px}px)`;
+  }
+
+  changeSlide() {
+    this.checkSlide();
+    this.setTransform(this.offsetPatterns[this.currentSlide]);
+
+    this.changeContent(this.articleTitles);
+    this.changeContent(this.articleTexts);
+    this.changeContent(this.articleLinks);
+
+    this.intervaledChangeStart(this.slideTime);
+  }
+
+  showNextSlide() {
+    this.currentSlide += 1;
+    this.changeSlide();
+  }
+
+  showPrevSlide() {
+    this.currentSlide -= 1;
+    this.changeSlide();
+  }
+
+  intervaledChangeStop() {
+    clearInterval(this.slideTimer);
+  }
+
+  intervaledChangeStart() {
+    this.intervaledChangeStop();
+    this.slideTimer = setTimeout(() => this.showNextSlide(), this.slideTime);
+  }
+
+  setMouseEnterListener() {
+    this.body.addEventListener('pointerenter', () => {
+      this.intervaledChangeStop();
+    });
+  }
+
+  setMouseLeaveListener() {
+    this.body.addEventListener('pointerleave', () => {
+      this.intervaledChangeStart();
+    });
+  }
+
+  setSwipeListeners() {
+    this.imgsWindow.addEventListener('touchstart', (e) => {
+      this.posX2 = this.offsetPatterns[this.currentSlide];
+
+      this.intervaledChangeStop();
+      this.posInit = this.posX1 = e.touches[0].clientX;
+
+      this.imgsInner.style.transition = '0s';
+    });
+
+    this.imgsWindow.addEventListener('touchmove', (e) => {
+      if (this.currentSlide == 0) {
+        if (this.posInit < this.posX1) {
+          this.setTransform(this.offsetPatterns[this.currentSlide]);
+          return;
+        }
+      }
+
+      if (this.currentSlide == this.imgs.length - 1) {
+        if (this.posInit > this.posX1) {
+          this.setTransform(this.offsetPatterns[this.currentSlide]);
+          return;
+        }
+      }
+
+      this.intervaledChangeStop();
+
+      this.posX2 += this.posX1 - e.touches[0].clientX;
+      this.posX1 = e.touches[0].clientX;
+
+      this.imgsInner.style.transform = `translateX(-${this.posX2}px)`;
+    });
+
+    this.imgsWindow.addEventListener('touchend', () => {
+      this.posFinal = this.posInit - this.posX1;
+      this.imgsInner.style.transition = '';
+      this.intervaledChangeStart();
+
+      if (Math.abs(this.posFinal) > this.posThreshold) {
+        if (this.posInit < this.posX1) {
+          this.currentSlide--;
+        } else if (this.posInit > this.posX1) {
+          this.currentSlide++;
+        }
+      }
+      if (this.posInit !== this.posX1) {
+        this.changeSlide();
+      }
+    });
+  }
+
+  setResizeListener() {
+    window.addEventListener('resize', () => {
+      if (document.documentElement.clientWidth != this.windowWidth) {
+        this.calcImgsWindowWidth();
+        this.setImgsWidth();
+        this.calcOffset();
+        this.changeSlide();
+
+        this.windowWidth = document.documentElement.clientWidth;
+      }
+    });
+  }
+
+  setBtnsListeners() {
+    this.prevBtn.addEventListener('click', () => this.showPrevSlide());
+
+    this.nextBtn.addEventListener('click', () => this.showNextSlide());
+  }
+
+  init() {
+    this.calcImgsWindowWidth();
+    this.setImgsWidth();
+    this.calcOffset();
+    this.changeSlide();
+    this.setResizeListener();
+    this.setMouseEnterListener();
+    this.setMouseLeaveListener();
+    this.setSwipeListeners();
+    this.setBtnsListeners();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const MainSlider = new Slider({
+    bodySelector: 'js_slider-body',
+    imgsWindowSelector: 'js_slider-img-window',
+    imgsInnerSelector: 'js_slider-img-inner',
+    articleTitlesSelector: 'js_slider-title',
+    articleTextsSelector: 'js_slider-text',
+    articleLinksSelector: 'js_slider-link',
+    prevBtnSelector: 'js_slider-btn-prev',
+    nextBtnSelector: 'js_slider-btn-next',
+    activeClass: 'slider__active',
+    slideTime: 12,
   });
 
-  prevBtn.addEventListener('click', prevSlide);
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtnMob.addEventListener('click', prevSlide);
-  nextBtnMob.addEventListener('click', nextSlide);
-
-
-
-  function prevSlide() {
-    if (offset == 0) {
-      offset = parseInt(imgWidth) * (slidesImgs.length - 1);
-      changeArticle(slidesImgs.length - 1);
-    } else {
-      offset -= parseInt(imgWidth);
-      changeArticle(offset / parseInt(imgWidth));
-    }
-    slidesImgsInner.style.transform = `translateX(-${offset}px)`;
-  }
-
-  function nextSlide() {
-    if (offset == parseInt(imgWidth) * (slidesImgs.length - 1)) {
-      offset = 0;
-      changeArticle(0);
-    } else {
-      offset += parseInt(imgWidth);
-      changeArticle(offset / parseInt(imgWidth));
-    }
-    slidesImgsInner.style.transform = `translateX(-${offset}px)`;
-  }
-
-  function changeArticle(n) {
-    articleTitle.textContent = slidesArticles[n].title;
-    articleText.textContent = slidesArticles[n].text;
-    articleLink.setAttribute('href', slidesArticles[n].link);
-  }
+  MainSlider.init();
 });
+

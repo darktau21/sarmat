@@ -4,17 +4,19 @@
   left: 0
   width: 0
   min-height: 100%
-  @media screen and ( min-width: 992px )
+  transition-delay: 0.3s
+  @media screen and ( min-width: 1200px )
     display: none
   &_active
     display: block
     width: 100%
+    transition-delay: 0s
     & .mobile-menu__container
       transform: translateX(0)
   &__btn
     width: 40px
     height: 40px
-    @media screen and ( min-width: 992px )
+    @media screen and ( min-width: 1200px )
       display: none
     & span, &::before, &::after
       width: 100%
@@ -56,7 +58,7 @@
     transform: translateX(-100%)
     transform-origin: left center
     width: 60%
-    height: 100vh
+    min-height: 100vh
     background-color: $bg-color
     padding-top: +calculateRem(10px)
     overflow-y: auto

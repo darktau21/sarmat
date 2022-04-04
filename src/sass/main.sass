@@ -15,18 +15,24 @@ body
   box-sizing: border-box
   position: relative
   overflow-x: hidden
+  height: 100%
+
+.wrapper
   background-color: $bg-color
   background-image: url(img/background.jpg)
   background-position: center
   background-size: 100% auto
   background-repeat: repeat-y
+  min-height: 100%
+  display: flex
+  flex-direction: column
 
 .container
-  max-width: 1170px
+  max-width: 1230px
   margin: 0 auto
   padding:
-    left: +calculateRem(10px)
-    right: +calculateRem(10px)
+    left: 15px
+    right: 15px
 
 *,
 ::after,
@@ -34,6 +40,9 @@ body
   padding: 0
   margin: 0
   border: 0
+
+main
+  flex: 1 1 auto
 
 a
   text-decoration: none

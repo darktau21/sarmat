@@ -10,134 +10,12 @@
     <link type="image/x-icon" rel="shortcut icon" href="img/sf-logo.svg" />
   </head>
   <body>
-    <header class="main-header">
-      <nav class="main-header__nav container">
-        <div class="mobile-menu__btn js_menu-mobile-btn-open">
-          <span></span>
-        </div>
-        <div class="logo">
-          <div class="logo__img">
-            <a href="https://sfedu.ru" target="_blank" rel="noopener noreferrer">
-              <img src="img/sf-logo.svg" width="50" height="43" alt="ЮФУ" />
-            </a>
+    <div class="wrapper">
+      <header class="main-header">
+        <nav class="main-header__nav container">
+          <div class="mobile-menu__btn js_mobile-menu-openBtn">
+            <span></span>
           </div>
-          <a href="/" class="logo__text">Museum of Soil Science</a>
-        </div>
-        <div class="main-menu">
-          <ul class="main-menu__list">
-            <li class="main-menu__item main-menu__item_active">
-              <a href="/">Главная</a>
-            </li>
-            <li class="main-menu__item"><a href="/exposition.html?page=o-pochve">О почве</a></li>
-            <li class="main-menu__item"><a href="/photoarchive/zaharov.html">Фотоархив</a></li>
-            <li class="main-menu__item"><a href="/history.html?page=1">История</a></li>
-            <li class="main-menu__item"><a href="/laboratories.html">Лаборатории</a></li>
-            <li class="main-menu__item"><a href="/contacts.html">Контакты</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <section class="promo container">
-        <div class="promo__content">
-          <h1>Музей «Царство почв – мир под ногами»</h1>
-        </div>
-      </section>
-      <section class="slider">
-        <div class="slider__container container">
-          <div class="slider__bckg">
-            <div class="slider__body">
-              <div class="slider__img-container js_slider-img-container">
-                <div class="slider__img-inner js_slider-img-inner">
-                  <img
-                    class="slider__img js_slider-img"
-                    src="uploads/slider/picture1.jpg"
-                    alt="Морфология почв"
-                  />
-                  <img
-                    class="slider__img js_slider-img"
-                    src="uploads/slider/picture2.jpg"
-                    alt="Химия почв"
-                  />
-                  <img
-                    class="slider__img js_slider-img"
-                    src="uploads/slider/picture3.jpg"
-                    alt="О почве"
-                  />
-                  <img
-                    class="slider__img js_slider-img"
-                    src="uploads/slider/picture4.jpg"
-                    alt="Физика почв"
-                  />
-                  <img
-                    class="slider__img js_slider-img"
-                    src="uploads/slider/picture5.jpg"
-                    alt="Биология почв"
-                  />
-                </div>
-              </div>
-              <article class="slider__article">
-                <div class="slider__btns_mobile">
-                  <img
-                    class="slider__btn slider__btn_prev js_slider-prev-mob"
-                    src="img/right-arrow-icon.svg"
-                    alt="Следующий слайд"
-                  />
-                  <img
-                    class="slider__btn slider__btn_next js_slider-next-mob"
-                    src="img/right-arrow-icon.svg"
-                    alt="Следующий слайд"
-                  />
-                </div>
-                <header class="slider__header">
-                  <h2 class="slider__title js_slider-title">Морфология почв</h2>
-                  <div class="slider__btns">
-                    <img
-                      class="slider__btn slider__btn_prev js_slider-prev"
-                      src="img/right-arrow-icon.svg"
-                      alt="Следующий слайд"
-                    />
-                    <img
-                      class="slider__btn slider__btn_next js_slider-next"
-                      src="img/right-arrow-icon.svg"
-                      alt="Следующий слайд"
-                    />
-                  </div>
-                </header>
-                <p class="slider__text js_slider-text">
-                  Сумма внешних признаков, которые являются результатом процессов формирования и
-                  поэтому отражают происхождение почв, историю их развития, их физические и
-                  химические свойства.
-                </p>
-                <div class="slider__link">
-                  <a class="js_slider-link" href="/exposition.html?page=morfologiya-pochv">Перейти к статье</a>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <div class="mobile-menu js_menu-mobile">
-      <div class="mobile-menu__wrapper js_menu-mobile-wrapper">
-        <div class="mobile-menu__container">
-          <div class="mobile-menu__close-btn js_menu-mobile-btn-close"></div>
-          <ul class="mobile-menu__list">
-            <li class="mobile-menu__item mobile-menu__item_active">
-              <a href="/" class="mobile-menu__link">Главная</a>
-            </li>
-            <li class="mobile-menu__item"><a href="/exposition.html?page=o-pochve" class="mobile-menu__link">О почве</a></li>
-            <li class="mobile-menu__item"><a href="/photoarchive/zaharov.html" class="mobile-menu__link">Фотоархив</a></li>
-            <li class="mobile-menu__item"><a href="/history.html?page=1" class="mobile-menu__link">История</a></li>
-            <li class="mobile-menu__item"><a href="/laboratories.html" class="mobile-menu__link">Лаборатории</a></li>
-            <li class="mobile-menu__item"><a href="/contacts.html" class="mobile-menu__link">Контакты</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <footer class="main-footer">
-      <div class="main-footer__container container">
-        <div class="left-column">
           <div class="logo">
             <div class="logo__img">
               <a href="https://sfedu.ru" target="_blank" rel="noopener noreferrer">
@@ -146,35 +24,196 @@
             </div>
             <a href="/" class="logo__text">Museum of Soil Science</a>
           </div>
-          <address class="main-footer__address">
-            Ростовская область, город Ростов-на-Дону, пр. Стачки, 194 корпус 1
-          </address>
-          <div class="main-footer__copyright">
-            &#169; Southern Federal, <span class="js_copyright-year">2077</span>
+          <div class="main-menu">
+            <ul class="main-menu__list">
+              <li class="main-menu__item main-menu__item_active">
+                <a href="/">Главная</a>
+              </li>
+              <li class="main-menu__item"><a href="/exposition.html?page=o-pochve">О почве</a></li>
+              <!-- <li class="main-menu__item"><a href="/photoarchive.html">Фотоархив</a></li> -->
+              <li class="main-menu__item"><a href="/history.html?page=1">История</a></li>
+              <li class="main-menu__item"><a href="/laboratories.html">Лаборатории</a></li>
+              <li class="main-menu__item"><a href="/staff.html">Сотрудники</a></li>
+              <li class="main-menu__item"><a href="/contacts.html">Контакты</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <section class="promo container">
+          <div class="promo__content">
+            <h1>Музей «Царство почв – мир под ногами»</h1>
+          </div>
+        </section>
+        <section class="slider">
+          <div class="slider__container container">
+            <div class="slider__bckg">
+              <div class="slider__body js_slider-body">
+                <div class="slider__img-window js_slider-img-window">
+                  <div class="slider__img-inner js_slider-img-inner">
+                    <img class="slider__img" src="uploads/slider/picture1.jpg" alt="О почве" />
+                    <img
+                      class="slider__img"
+                      src="uploads/slider/picture2.jpg"
+                      alt="Морфология почв"
+                    />
+                    <img class="slider__img" src="uploads/slider/picture3.jpg" alt="Физика почв" />
+                    <img
+                      class="slider__img"
+                      src="uploads/slider/picture4.jpg"
+                      alt="Биология почв"
+                    />
+                    <img class="slider__img" src="uploads/slider/picture5.jpg" alt="Химия почв" />
+                  </div>
+                </div>
+                <article class="slider__article">
+                  <header class="slider__header">
+                    <div class="slider__titles">
+                      <h2 class="slider__title js_slider-title">О почве</h2>
+                      <h2 class="slider__title js_slider-title">Морфология почв</h2>
+                      <h2 class="slider__title js_slider-title">Физика почв</h2>
+                      <h2 class="slider__title js_slider-title">Биология почв</h2>
+                      <h2 class="slider__title js_slider-title">Химия почв</h2>
+                    </div>
+                    <div class="slider__btns">
+                      <img
+                        class="slider__btn slider__btn_prev js_slider-btn-prev"
+                        src="img/right-arrow-icon.svg"
+                        alt="Следующий слайд"
+                      />
+                      <img
+                        class="slider__btn slider__btn_next js_slider-btn-next"
+                        src="img/right-arrow-icon.svg"
+                        alt="Следующий слайд"
+                      />
+                    </div>
+                  </header>
+                  <div class="slider__texts">
+                    <p class="slider__text js_slider-text">
+                      Почва — это особое природное тело, образующееся на поверхности Земли, в
+                      результате взаимодействия живой (органической) и неживой (неорганической)
+                      природы. Важнейшим свойством почвы, отличающим её от горных пород, является
+                      плодородие.
+                    </p>
+                    <p class="slider__text js_slider-text">
+                      Сумма внешних признаков, которые являются результатом процессов формирования и
+                      поэтому отражают происхождение почв, историю их развития, их физические и
+                      химические свойства.
+                    </p>
+                    <p class="slider__text js_slider-text">
+                      Физические свойства и процессы в почвах. Особое внимание уделяется движению
+                      воды, переносу питательных веществ, теплопроводности, транспортировке газа.
+                      Кроме того, прочность почвы, ее механика, уплотнение, несущая способность,
+                      набухание и усадка, макропоры и т. д.
+                    </p>
+                    <p class="slider__text js_slider-text">
+                      Почва — это среда обитания множества организмов. Существа, обитающие в почве,
+                      называются педобионтами. Наименьшими из них являются бактерии, водоросли,
+                      грибки и одноклеточные организмы, обитающие в почвенных водах.
+                    </p>
+                    <p class="slider__text js_slider-text">
+                      Изучение химических основ почвообразования и плодородия почв, путем
+                      исследования состава, свойств почв и протекающих в почвах процессов на
+                      ионно-молекулярном и коллоидном уровнях.
+                    </p>
+                  </div>
+                  <div class="slider__links">
+                    <a class="slider__link js_slider-link" href="/exposition.html?page=o-pochve">Перейти к статье</a>
+                    <a class="slider__link js_slider-link" href="/exposition.html?page=morfologiya-pochv">Перейти к статье</a>
+                    <a class="slider__link js_slider-link" href="/exposition.html?page=fizika-pochv">Перейти к статье</a>
+                    <a class="slider__link js_slider-link" href="/exposition.html?page=biologiya-pochv">Перейти к статье</a>
+                    <a class="slider__link js_slider-link" href="/exposition.html?page=himiya-pochv">Перейти к статье</a>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="main-footer">
+        <div class="main-footer__container container">
+          <div class="main-footer__column">
+            <div class="logo">
+              <div class="logo__img">
+                <a href="https://sfedu.ru" target="_blank" rel="noopener noreferrer">
+                  <img src="img/sf-logo.svg" width="50" height="43" alt="ЮФУ" />
+                </a>
+              </div>
+              <a href="/" class="logo__text">Museum of Soil Science</a>
+            </div>
+            <address class="main-footer__address">
+              Ростовская область, город Ростов-на-Дону, пр. Стачки, 194 корпус 1
+            </address>
+            <div class="main-footer__copyright">
+              &#169; Southern Federal, <span class="js_copyright-year">2077</span>
+            </div>
+          </div>
+          <div class="main-footer__priority-logo"><a href="https://priority2030.ru/" target="_blank" rel="noopener noreferrer"><img src="img/priority-2030-logo.png" alt="Приоритет 2030"></a></div>
+          <div class="main-footer__column main-footer__column_right">
+            <img
+              class="main-footer__found-logo"
+              src="img/found-logo.png"
+              alt="Фонд Целевого Капитала ЮФУ"
+            />
+            <div class="socials main-footer__socials">
+              <div class="socials__item socials__item_vk">
+                <a href="https://vk.com/soilsfedu" target="_blank" rel="noopener noreferrer"
+                  ><img src="img/vk-icon.svg" alt="Мы ВКонтакте"
+                /></a>
+              </div>
+              <!-- <div class="socials__item socials__item_inst">
+                <a
+                  href="https://www.instagram.com/soil.sfedu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img src="img/inst-icon.svg" alt="Мы в Instagram"
+                /></a>
+              </div>
+              <div class="socials__item socials__item_fb">
+                <a
+                  href="https://www.facebook.com/groups/579073509395215"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img src="img/fb-icon.svg" alt="Мы в Facebook"
+                /></a>
+              </div> -->
+            </div>
           </div>
         </div>
-        <div class="main-footer__right-column">
-          <img
-            class="main-footer__found-logo"
-            src="img/found-logo.png"
-            alt="Фонд Целевого Капитала ЮФУ"
-          />
-          <div class="socials">
-            <div class="socials__item socials__item_vk">
-              <a href="https://vk.com/soilsfedu" target="_blank" rel="noopener noreferrer"><img src="img/vk-icon.svg" alt="Мы ВКонтакте" /></a>
-            </div>
-            <div class="socials__item socials__item_inst">
-              <a href="https://www.instagram.com/soil.sfedu/" target="_blank" rel="noopener noreferrer"><img src="img/inst-icon.svg" alt="Мы в Instagram" /></a>
-            </div>
-            <div class="socials__item socials__item_fb">
-              <a href="https://www.facebook.com/groups/579073509395215" target="_blank" rel="noopener noreferrer"><img src="img/fb-icon.svg" alt="Мы в Facebook" /></a>
-            </div>
+      </footer>
+      <div class="mobile-menu js_mobile-menu">
+        <div class="mobile-menu__wrapper js_mobile-menu-wrapper">
+          <div class="mobile-menu__container">
+            <div class="mobile-menu__close-btn js_mobile-menu-closeBtn"></div>
+            <ul class="mobile-menu__list">
+              <li class="mobile-menu__item mobile-menu__item_active">
+                <a href="/" class="mobile-menu__link">Главная</a>
+              </li>
+              <li class="mobile-menu__item">
+                <a href="/exposition.html?page=o-pochve" class="mobile-menu__link">О почве</a>
+              </li>
+              <!-- <li class="mobile-menu__item">
+                <a href="/photoarchive.html" class="mobile-menu__link">Фотоархив</a>
+              </li> -->
+              <li class="mobile-menu__item">
+                <a href="/history.html?page=1" class="mobile-menu__link">История</a>
+              </li>
+              <li class="mobile-menu__item">
+                <a href="/laboratories.html" class="mobile-menu__link">Лаборатории</a>
+              </li>
+              <li class="mobile-menu__item">
+                <a href="/staff.html" class="mobile-menu__link">Сотрудники</a>
+              </li>
+              <li class="mobile-menu__item">
+                <a href="/contacts.html" class="mobile-menu__link">Контакты</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </footer>
-    <script src="js/mobile-menu.js"></script>
-    <script src="js/slider.js"></script>
-    <script src="js/footer.js"></script>
+      <script src="js/mobile-menu.js"></script>
+      <script src="js/slider.js"></script>
+      <script src="js/footer.js"></script>
+    </div>
   </body>
 </html>
