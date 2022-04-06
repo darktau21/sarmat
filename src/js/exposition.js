@@ -66,6 +66,8 @@ class Exposition {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+
 const MainExposition = new Exposition({
   articlesSelector: 'js_article',
   linksSelector: 'js_article-link',
@@ -74,3 +76,5 @@ const MainExposition = new Exposition({
 });
 
 MainExposition.init();
+
+});

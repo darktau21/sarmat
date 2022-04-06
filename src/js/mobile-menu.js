@@ -38,6 +38,8 @@ class MobileMenu {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+
 const mobileMenu = new MobileMenu({
   menuSelector: 'js_mobile-menu',
   wrapperSelector: 'js_mobile-menu-wrapper',
@@ -47,3 +49,5 @@ const mobileMenu = new MobileMenu({
 });
 
 mobileMenu.init();
+
+});

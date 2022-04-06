@@ -1,6 +1,8 @@
 const { src, dest, parallel, series, watch } = require('gulp');
 const browserSync = require('browser-sync').create();
 const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
+const jsImport = require('gulp-js-import');
 const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass')(require('sass'));
 const sassglob = require('gulp-sass-glob');
@@ -20,12 +22,15 @@ function browsersync() {
 
 function scripts() {
   return src(['src/js/*.js'])
+  .pipe(sourcemaps.init())
+  .pipe(jsImport({hideConsole: false}))
     .pipe(
       babel({
         presets: ['@babel/preset-env'],
       })
     )
     .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(dest('dist/js/'))
     .pipe(browserSync.stream());
 }

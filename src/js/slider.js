@@ -27,7 +27,7 @@ class Slider {
 
     this.currentSlide = 0;
     this.imgsWindowWidth;
-    this.offsetPatterns = this.calcOffset();
+    this.offsetPatterns;
     this.slideTimer;
     this.windowWidth = document.documentElement.clientWidth;
     this.posInit;
@@ -49,17 +49,16 @@ class Slider {
   }
 
   calcOffset() {
-    const offsetPatterns = [0];
     let widthSum = 0;
+    this.offsetPatterns = [0];
 
     this.imgs.forEach(() => {
       widthSum += this.imgsWindowWidth;
-      offsetPatterns.push(widthSum);
+      this.offsetPatterns.push(widthSum);
     });
 
-    offsetPatterns.pop();
+    this.imgsInner.style.width = `${this.offsetPatterns.pop()}px`;
 
-    this.offsetPatterns = offsetPatterns;
   }
 
   checkSlide() {

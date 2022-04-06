@@ -25,8 +25,8 @@
       opacity: 1
   &__title
     color: $additional-color
-    padding: 20px
-    font-size: +calculateRem(30px)
+    padding: 10px
+    font-size: +calculateRem(22px)
     font-weight: 600
     text-align: center
   &__main
@@ -38,10 +38,13 @@
     top: 50%
     transform: translateY(-50%)
     z-index: 1
+    cursor: pointer
     &_prev
       left: 0
+      padding-left: 2%
     &_next
       right: 0
+      padding-right: 2%
   &__img-window
     height: 100%
     overflow: hidden
@@ -49,7 +52,7 @@
     height: 100%
     display: flex
     align-content: center
-    transform: translateX(-0vw)
+    transform: translateX(-100vw)
     transition: 0.3s
   &__img-block
     height: 100%
@@ -66,7 +69,7 @@
     display: flex
     align-items: center
     position: absolute
-    bottom: 0
+    bottom: 1%
     background-color: $bg-color
     border-radius: 5px
     transition: 0.3s
@@ -78,5 +81,11 @@
   &__thumbnails-inner
     display: flex
     align-items: center
+    transition: 0.3s
+  &__thumbnails-btn
+    cursor: pointer
   &__thumbnail
     padding: 5px
+    cursor: pointer
+    &_active
+      background-color: $main-color

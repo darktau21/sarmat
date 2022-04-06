@@ -118,6 +118,8 @@ class Paginator {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+
 const MainPaginator = new Paginator({
   articlesSelector: 'js_article',
   paginatorSelector: 'js_paginator',
@@ -132,3 +134,5 @@ const MainPaginator = new Paginator({
 });
 
 MainPaginator.init();
+
+});
