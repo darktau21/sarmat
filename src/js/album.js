@@ -154,10 +154,17 @@ class Album {
     });
   }
 
+  removeImg(imgBlock) {
+    let img = imgBlock.querySelector(`.${this.albumImgClass}`);
+    if (img) {
+      img.remove();
+    }
+  }
+
   changeImg() {
-    this.prevImgBlock.innerHTML = '';
-    this.middleImgBlock.innerHTML = '';
-    this.nextImgBlock.innerHTML = '';
+    this.removeImg(this.prevImgBlock);
+    this.removeImg(this.middleImgBlock);
+    this.removeImg(this.nextImgBlock);
 
     let prevImg = document.createElement('img');
     let middleImg = document.createElement('img');
@@ -313,7 +320,7 @@ class Album {
         let selectedImg = +e.currentTarget.dataset.num;
 
         if (selectedImg > this.currentImg) {
-          this.nextImgBlock.innerHTML = '';
+          this.removeImg(this.nextImgBlock);
 
           let nextImg = document.createElement('img');
           nextImg.classList.add(this.albumImgClass);
@@ -333,7 +340,7 @@ class Album {
         }
 
         if (selectedImg < this.currentImg) {
-          this.prevImgBlock.innerHTML = '';
+          this.removeImg(this.prevImgBlock);
 
           let prevImg = document.createElement('img');
           prevImg.classList.add(this.albumImgClass);
@@ -368,7 +375,6 @@ class Album {
 
     for (let i = 0; i < this.thumbnailsImgElems.length; i++) {
       let thumbnailWidth = this.thumbnailsImgElems[i].offsetWidth;
-      console.log(thumbnailWidth);
 
       imgsWidthSum += thumbnailWidth;
       allThumbsWidth += thumbnailWidth;
@@ -391,20 +397,6 @@ class Album {
     this.changeActiveThumb();
     this.setThumbImgListener();
   }
-
-  // setResizeListener() {
-  //   window.addEventListener('resize', () => {
-  //     if (document.documentElement.clientWidth != this.windowWidth) {
-  //       console.log('Ширина окна')
-  //       this.thumbnailsCurrentPattern = 0;
-  //       this.calcThumbnailsOffset();
-  //       this.changeThumbsOffset();
-
-  //       this.windowWidth = document.documentElement.clientWidth;
-  //       console.log(this);
-  //     }
-  //   });
-  // }
 
   setThumbnailsBtnsLsiteners() {
     this.thumbnailsBtns.forEach((btn) => {
@@ -531,12 +523,10 @@ class Album {
   }
 
   init() {
-    console.log('Инициализация\n', this);
     this.fillThumbsInner();
     this.fillAlbumImgs();
     this.changeImg();
     this.changeCaption();
-    // this.setResizeListener();
     this.setCloseBtnListener();
     this.setAlbumControlsListener();
     this.setImgSwipeListeners();
