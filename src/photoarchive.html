@@ -44,61 +44,48 @@
       <main>
         <div class="container">
           <div class="page photoarchive">
-            <aside class="sub-menu">
-              <ul class="sub-menu__list">
+            <aside class="photoarchive__menu">
+              <ul class="photoarchive__menu-list">
                 <li
-                  class="sub-menu__item js_album-link"
+                  class="photoarchive__menu-link js_album-link"
                   data-article="?page=zaharov"
                   data-name="zaharov"
                 >
                   Фотоальбом Захарова С. А.
                 </li>
                 <li
-                  class="sub-menu__item js_article-link"
-                  data-article="?page=morfologiya-pochv"
-                  data-name="morfologiya-pochv"
+                  class="photoarchive__menu-link js_album-link"
+                  data-article="?page=gavriluk"
+                  data-name="gavriluk"
                 >
-                  Морфология почв
+                  Фотоальбом Гаврилюка Ф. Я.
                 </li>
                 <li
-                  class="sub-menu__item js_article-link"
-                  data-article="?page=fizika-pochv"
-                  data-name="fizika-pochv"
+                  class="photoarchive__menu-link js_album-link"
+                  data-article="?page=practice"
+                  data-name="practice"
                 >
-                  Физика почв
+                Фотоальбом Учебные практики студентов кафедры почвоведения РГУ
                 </li>
                 <li
-                  class="sub-menu__item js_article-link"
-                  data-article="?page=biologiya-pochv"
-                  data-name="biologiya-pochv"
+                  class="photoarchive__menu-link js_album-link"
+                  data-article="?page=graduates"
+                  data-name="graduates"
                 >
-                  Биология почв
-                </li>
-                <li
-                  class="sub-menu__item js_article-link"
-                  data-article="?page=himiya-pochv"
-                  data-name="himiya-pochv"
-                >
-                  Химия почв
-                </li>
-                <li
-                  class="sub-menu__item js_article-link"
-                  data-article="?page=zalozhenie-pochvennih-razrezov"
-                  data-name="zalozhenie-pochvennih-razrezov"
-                >
-                  Заложение почвенных разрезов
+                Выпускники кафедры
                 </li>
               </ul>
             </aside>
             <section class="albums">
-              <div class="album album_active album_zaharov js_album" data-name="zaharov">
+              <div class="album album_zaharov js_album" data-name="zaharov">
                 <div class="album__wrapper">
-                  <div class="album__header">
+                  <header class="album__header js_header">
+                    <div class="album__close-btn js_close-btn"></div>
                     <h2 class="album__title">Фотоальбом Захарова С. А.</h2>
-                  </div>
+                  </header>
                   <div class="album__main">
                     <div class="album__img-btn album__img-btn_prev js_img-btn">
-                      <img src="img/right-arrow-icon.svg" alt="" srcset="" />
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
                     </div>
                     <div class="album__img-window">
                       <div class="album__img-inner js_img-inner">
@@ -117,21 +104,159 @@
                       </div>
                     </div>
                     <div class="album__img-btn album__img-btn_next js_img-btn">
-                      <img src="img/right-arrow-icon.svg" alt="" srcset="" />
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
                     </div>
                   </div>
-                  <div class="album__thumbnails">
-                    <div class="album__thumbnails-btn album__thumbnails-btn_prev js_thumbnails-btn">
-                      <img src="img/right-arrow-icon.svg" alt="" srcset="" />
-                    </div>
-                    <div class="album__thumbnails-window js_thumbnails-window">
-                      <div class="album__thumbnails-inner js_thumbnails-inner">
+                  <footer class="album__footer js_footer">
+                    <div class="album__caption js_caption"></div>
+                    <div class="album__thumbnails">
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_prev js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                      <div class="album__thumbnails-window js_thumbnails-window">
+                        <div class="album__thumbnails-inner js_thumbnails-inner"></div>
+                      </div>
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_next js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
                       </div>
                     </div>
-                    <div class="album__thumbnails-btn album__thumbnails-btn_next js_thumbnails-btn">
-                      <img src="img/right-arrow-icon.svg" alt="" srcset="" />
+                  </footer>
+                </div>
+              </div>
+              <div class="album album_gavriluk js_album" data-name="gavriluk">
+                <div class="album__wrapper">
+                  <header class="album__header js_header">
+                    <div class="album__close-btn js_close-btn"></div>
+                    <h2 class="album__title">Фотоальбом Гаврилюка Ф. Я.</h2>
+                  </header>
+                  <div class="album__main">
+                    <div class="album__img-btn album__img-btn_prev js_img-btn">
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                    </div>
+                    <div class="album__img-window">
+                      <div class="album__img-inner js_img-inner">
+                        <figure class="album__img-block js_img-block-prev">
+                        </figure>
+                        <figure class="album__img-block js_img-block-middle">
+                        </figure>
+                        <figure class="album__img-block js_img-block-next">
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="album__img-btn album__img-btn_next js_img-btn">
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
                     </div>
                   </div>
+                  <footer class="album__footer js_footer">
+                    <div class="album__caption js_caption"></div>
+                    <div class="album__thumbnails">
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_prev js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                      <div class="album__thumbnails-window js_thumbnails-window">
+                        <div class="album__thumbnails-inner js_thumbnails-inner"></div>
+                      </div>
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_next js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+              <div class="album album_practice js_album" data-name="practice">
+                <div class="album__wrapper">
+                  <header class="album__header js_header">
+                    <div class="album__close-btn js_close-btn"></div>
+                    <h2 class="album__title">Учебные практики студентов</h2>
+                  </header>
+                  <div class="album__main">
+                    <div class="album__img-btn album__img-btn_prev js_img-btn">
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                    </div>
+                    <div class="album__img-window">
+                      <div class="album__img-inner js_img-inner">
+                        <figure class="album__img-block js_img-block-prev">
+                        </figure>
+                        <figure class="album__img-block js_img-block-middle">
+                        </figure>
+                        <figure class="album__img-block js_img-block-next">
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="album__img-btn album__img-btn_next js_img-btn">
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                    </div>
+                  </div>
+                  <footer class="album__footer js_footer">
+                    <div class="album__caption js_caption"></div>
+                    <div class="album__thumbnails">
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_prev js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                      <div class="album__thumbnails-window js_thumbnails-window">
+                        <div class="album__thumbnails-inner js_thumbnails-inner"></div>
+                      </div>
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_next js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+              <div class="album album_graduates js_album" data-name="graduates">
+                <div class="album__wrapper">
+                  <header class="album__header js_header">
+                    <div class="album__close-btn js_close-btn"></div>
+                    <h2 class="album__title">Выпускники кафедры</h2>
+                  </header>
+                  <div class="album__main">
+                    <div class="album__img-btn album__img-btn_prev js_img-btn">
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                    </div>
+                    <div class="album__img-window">
+                      <div class="album__img-inner js_img-inner">
+                        <figure class="album__img-block js_img-block-prev">
+                        </figure>
+                        <figure class="album__img-block js_img-block-middle">
+                        </figure>
+                        <figure class="album__img-block js_img-block-next">
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="album__img-btn album__img-btn_next js_img-btn">
+                      <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                    </div>
+                  </div>
+                  <footer class="album__footer js_footer">
+                    <div class="album__caption js_caption"></div>
+                    <div class="album__thumbnails">
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_prev js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                      <div class="album__thumbnails-window js_thumbnails-window">
+                        <div class="album__thumbnails-inner js_thumbnails-inner"></div>
+                      </div>
+                      <div
+                        class="album__thumbnails-btn album__thumbnails-btn_next js_thumbnails-btn"
+                      >
+                        <img src="img/right-arrow-album.svg" alt="" srcset="" />
+                      </div>
+                    </div>
+                  </footer>
                 </div>
               </div>
             </section>

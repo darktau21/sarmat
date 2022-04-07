@@ -1,0 +1,36 @@
+.photoarchive
+  &__menu
+    background: $main-color
+    padding: 15px 25px
+    color: $additional-color
+    min-width: 250px
+    // width: 250px
+    flex-basis: 250px
+    top: 5%
+    margin-right: 25px
+    flex-grow: 1
+    margin: 0 auto
+  @media ( max-width: 992px )
+    margin-right: 0
+    margin-bottom: 20px
+  &__menu-list
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: flex-start
+    min-height: 250px
+  &__menu-link
+    color: $additional-color
+    font-size: +calculateRem(26px)
+    margin: 15px 0
+    font-weight: 500
+    padding: 0 3px
+    cursor: pointer
+    width: 100%
+    text-align: center
+    @media screen and ( max-width: 748px )
+      text-align: left
+      font-size: +calculateRem(18px)
+    &:hover, &_active
+        border-bottom: 2px solid $additional-color
+        transition: border 0.15s linear
