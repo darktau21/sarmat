@@ -16,6 +16,6 @@
     "theme_color": "#232a3e",
     "background_color": "#232a3e",
     "start_url": "http://sfmuseum.ru/",
-    "display": "fullscreen",
-    ​​"orientation": "portrait"
+    "orientation": "portrait",
+    "display": "fullscreen"
 }
