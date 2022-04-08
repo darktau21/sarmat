@@ -78,6 +78,10 @@ async function copywebp() {
   return src('src/img/**/*.webp').pipe(dest('dist/img/'));
 }
 
+async function copyfav() {
+  return src('src/favicons/**/*').pipe(dest('dist/favicons/'));
+}
+
 async function copysvg() {
   return src('src/img/**/*.svg').pipe(dest('dist/img/'));
 }
@@ -102,6 +106,7 @@ function startwatch() {
   watch('src/uploads/**/*.{jpg,jpeg,png,gif}', uploadimg);
   watch('src/img/**/*.webp', copywebp);
   watch('src/img/**/*.svg', copysvg);
+  watch('src/favicons/**/*', copyfav);
   // watch('src/**/*.{jpg,jpeg,png,svg,gif}', dataimg);
   watch('src/**/*.html', copyhtml).on(
     'change',
@@ -116,6 +121,7 @@ exports.images = images;
 exports.uploadimg = uploadimg;
 exports.copywebp = copywebp;
 exports.copysvg = copysvg;
+exports.copyfav = copyfav;
 exports.copyfonts = copyfonts;
 exports.copyhtml = copyhtml;
 exports.cleandist = cleandist;
@@ -127,6 +133,7 @@ exports.default = parallel(
   uploadimg,
   copywebp,
   copysvg,
+  copyfav,
   styles,
   scripts,
   browsersync,
@@ -141,6 +148,7 @@ exports.build = series(
   uploadimg,
   copywebp,
   copysvg,
+  copyfav,
   styles,
   scripts
 );
